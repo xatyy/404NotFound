@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.HelloController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.HelloController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -18,38 +24,76 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fitHeight="427.0" fitWidth="779.0" opacity="0.39" preserveRatio="true" GridPane.rowIndex="1">
+      <ImageView fitHeight="605.0" fitWidth="853.0" opacity="0.39" preserveRatio="true" GridPane.rowIndex="1">
          <image>
             <Image url="@../../../img/stars.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="200.0" fitWidth="200.0">
+      <ImageView fitHeight="126.0" fitWidth="126.0">
          <image>
             <Image url="@../../../img/rocket.png" />
          </image>
+         <GridPane.margin>
+            <Insets left="27.0" top="189.0" />
+         </GridPane.margin>
       </ImageView>
-      <Label fx:id="welcomeText" prefHeight="17.0" prefWidth="208.0" GridPane.columnIndex="1" />
-      <Text fill="#d4d9ff" strokeType="OUTSIDE" strokeWidth="0.0" text="404" textAlignment="CENTER" wrappingWidth="199.3251953125" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Text fill="#d4d9ff" strokeType="OUTSIDE" strokeWidth="0.0" text="404" textAlignment="CENTER" wrappingWidth="269.3251953125" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <font>
-            <Font name="System Bold" size="63.0" />
+            <Font name="System Bold" size="155.0" />
          </font>
          <GridPane.margin>
-            <Insets bottom="82.0" />
+            <Insets bottom="194.0" top="53.0" />
          </GridPane.margin>
       </Text>
       <HBox alignment="CENTER" prefHeight="31.0" prefWidth="285.0" spacing="31.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <children>
-            <Button onAction="#switchtoCPU" prefHeight="23.0" prefWidth="101.0" style="-fx-background-radius: 8px; -fx-background-color: #CACEF2;" text="CPU">
+            <Button onAction="#switchtoCPU" prefHeight="60.0" prefWidth="100.0" styleClass="buttons" text="CPU" textFill="#1a1b22">
                <padding>
                   <Insets bottom="14.0" top="14.0" />
                </padding>
+               <font>
+                  <Font name="HelveticaNeue Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button onAction="#switchtoRAM" prefHeight="27.0" prefWidth="100.0" style="-fx-background-radius: 8px; -fx-background-color: #CACEF2;" text="RAM">
+            <Button onAction="#switchtoRAM" prefHeight="60.0" prefWidth="100.0" styleClass="buttons" text="RAM" textFill="#1a1b22">
                <padding>
                   <Insets bottom="14.0" top="14.0" />
                </padding>
+               <font>
+                  <Font name="HelveticaNeue Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </HBox>
+      <ImageView fitHeight="184.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+         <image>
+            <Image url="@../../../img/antena.png" />
+         </image>
+         <GridPane.margin>
+            <Insets left="15.0" />
+         </GridPane.margin>
+      </ImageView>
+      <ImageView fitHeight="96.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+         <image>
+            <Image url="@../../../img/saturn.png" />
+         </image>
+         <GridPane.margin>
+            <Insets bottom="20.0" left="50.0" />
+         </GridPane.margin>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" rotate="99.9" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <image>
+            <Image url="@../../../img/saturn.png" />
+         </image>
+         <GridPane.margin>
+            <Insets left="109.0" />
+         </GridPane.margin>
+      </ImageView>
    </children>
 </GridPane>
