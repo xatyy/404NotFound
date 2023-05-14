@@ -1,3 +1,41 @@
 .backgroundColor{
-    -fx-background-color: linear-gradient(to right bottom, #494949, #0b0c15);
+    -fx-background-color: linear-gradient(to right bottom, #494949 0%, #0b0c15 50%);
+    -fx-background-radius: 10;
+}
+
+@font-face {
+    font-family: 'HelvetiNeue';
+    url('../fonts/HelveticaNeueBold.tff');
+}
+
+.buttons{
+    -fx-background-radius: 9px;
+    -fx-background-color:  #CACEF2;
+}
+
+.active{
+    -fx-background-radius: 9px;
+    -fx-background-color:  #CACEF2;
+}
+
+.inactive{
+    -fx-background-radius: 9px;
+    -fx-text-fill: #CACEF2;
+    -fx-background-color: #252731;
+}
+
+.inactive:hover{
+    -fx-background-radius: 9px;
+    -fx-background-color: #51566c;
+}
+
+.buttons:hover{
+    -fx-background-radius: 9px;
+    -fx-background-color: #8e95e3;
+}
+
+.sidebar{
+    -fx-background-color: rgba(11, 12, 21, 0.38);
+    -fx-border-color: rgba(202, 206, 242, 0.5);
+    -fx-border-width: 0 1 0 0;
 }
