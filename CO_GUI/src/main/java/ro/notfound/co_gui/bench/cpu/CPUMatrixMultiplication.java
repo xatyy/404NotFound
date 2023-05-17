@@ -78,6 +78,10 @@ public class CPUMatrixMultiplication implements IBenchmark {
         return String.format("Matrix size: %d, Number of threads: %d", matrixSize, numThreads);
     }
 
+    public double score(double time,int i) {
+        double score = (double) matrixSize/( Math.log(time) * 10E-2* i);
+        return score;
+    }
 
     private class MatrixMultiplicationTask implements Runnable {
 
