@@ -34,6 +34,14 @@ public class CPU_SceneController {
         stage.setScene(scene);
         stage.show();
     }
+    @FXML
+    protected void History(ActionEvent history) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("History_CPU.fxml"));
+        stage = (Stage) ((Node) history.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
     @FXML
@@ -74,5 +82,31 @@ public class CPU_SceneController {
         };
 
     }
+    @FXML
+    protected void switchtoCPU(ActionEvent TO_CPU) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CPU_Scene.fxml"));
+        stage = (Stage) ((Node)TO_CPU.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
 
+
+    }
+    @FXML
+    protected void PC_Specs(ActionEvent TO_CPU) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Specs_CPU.fxml"));
+        stage = (Stage) ((Node) TO_CPU.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
+
+    }
+    @FXML
+    protected void About_CPU(ActionEvent TO_CPU) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("About_CPU.fxml"));
+        stage = (Stage) ((Node) TO_CPU.getSource()).getScene().getWindow();
+        scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
+    }
 }

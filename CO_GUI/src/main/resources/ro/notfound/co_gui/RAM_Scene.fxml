@@ -1,26 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.CPU_SceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.RAM_SceneController">
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #1E1E1E;">
+      <ImageView fitHeight="605.0" fitWidth="853.0" layoutX="14.0" layoutY="10.0" opacity="0.39" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/stars.png" />
+         </image>
+      </ImageView>
+      <Pane blendMode="SRC_ATOP" prefHeight="600.0" prefWidth="223.0" styleClass="sidebar">
          <children>
-            <Pane prefHeight="400.0" prefWidth="200.0" style="-fx-background-color: #1B1C22;">
-               <children>
-                  <Button layoutX="45.0" layoutY="348.0" mnemonicParsing="false" onAction="#go_Back" text="Back" />
-               </children>
-            </Pane>
+            <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Home">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="Algorithm" textFill="#1a1b22">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="12.0" layoutY="163.0" mnemonicParsing="false" onAction="#History" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="History">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="12.0" layoutY="221.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="PC Specs">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="12.0" layoutY="279.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="About">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
-      <TextField layoutX="217.0" layoutY="38.0" text="Algorithms for RAM">
+      <Button layoutX="259.0" layoutY="123.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="211.0" styleClass="buttons" text="RAM Memory Usage" textFill="#1a1b22">
          <font>
-            <Font size="26.0" />
+            <Font name="HelveticaNeue Bold" size="12.0" />
+         </font></Button>
+      <Text fill="#cacef2" layoutX="251.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RAM Algorithms">
+         <font>
+            <Font name="HelveticaNeue Bold" size="44.0" />
          </font>
-      </TextField>
+      </Text>
+      <Text fill="#cacef2" layoutX="243.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Workload" wrappingWidth="135.99998779296874">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextArea layoutX="237.0" layoutY="245.0" prefHeight="38.0" prefWidth="147.0" promptText="Test" wrapText="true" />
    </children>
 </AnchorPane>
