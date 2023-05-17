@@ -33,7 +33,7 @@
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="12.0" layoutY="163.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="History">
+            <Button layoutX="12.0" layoutY="163.0" mnemonicParsing="false" onAction="#History" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="History">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
@@ -41,7 +41,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="12.0" layoutY="221.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="PC Specs">
+            <Button layoutX="12.0" layoutY="221.0" mnemonicParsing="false" onAction="#PC_Specs" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="PC Specs">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="12.0" layoutY="279.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="About">
+            <Button layoutX="12.0" layoutY="279.0" mnemonicParsing="false" onAction="#About_CPU" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="About">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
