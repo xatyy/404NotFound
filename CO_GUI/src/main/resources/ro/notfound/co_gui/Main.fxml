@@ -95,5 +95,13 @@
             <Insets left="109.0" />
          </GridPane.margin>
       </ImageView>
+      <ImageView fitHeight="18.0" fitWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <image>
+            <Image url="@../../../img/It%20looks%20like%20you’re%20lost....png" />
+         </image>
+         <GridPane.margin>
+            <Insets left="33.0" top="65.0" />
+         </GridPane.margin>
+      </ImageView>
    </children>
 </GridPane>
