@@ -2,8 +2,6 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,12 +26,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="Algorithm" textFill="#1a1b22">
+            <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Algorithm" textFill="#1a1b22">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
             </Button>
-            <Button layoutX="12.0" layoutY="163.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="History">
+            <Button layoutX="12.0" layoutY="163.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="History">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
@@ -59,47 +57,15 @@
             </Button>
          </children>
       </Pane>
-      <Button layoutX="251.0" layoutY="326.0" mnemonicParsing="false" onAction="#CPU_Matrix" prefHeight="56.0" prefWidth="139.0" styleClass="buttons" text="Matrix Multiplication" textFill="#1a1b22">
-         <font>
-            <Font name="HelveticaNeue Bold" size="12.0" />
-         </font></Button>
-      <Text fill="#cacef2" layoutX="251.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU Algorithms">
+      <Text fill="#cacef2" layoutX="251.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="History">
          <font>
             <Font name="HelveticaNeue Bold" size="44.0" />
          </font>
       </Text>
-      <Button layoutX="251.0" layoutY="170.0" mnemonicParsing="false" onAction="#CPU_Matrix" prefHeight="56.0" prefWidth="139.0" styleClass="buttons" text="Aes Encryption" textFill="#1a1b22">
+      <Text fill="#cacef2" layoutX="251.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A table of previous benchmark tests" wrappingWidth="420.19200134277344">
          <font>
-            <Font name="HelveticaNeue Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button layoutX="251.0" layoutY="250.0" mnemonicParsing="false" onAction="#CPU_Matrix" prefHeight="56.0" prefWidth="139.0" styleClass="buttons" text="RSA Encryption" textFill="#1a1b22">
-         <font>
-            <Font name="HelveticaNeue Bold" size="12.0" />
-         </font>
-      </Button>
-      <TextArea layoutX="419.0" layoutY="188.0" prefHeight="4.0" prefWidth="336.0" promptText="Test" wrapText="true" />
-      <TextArea layoutX="419.0" layoutY="268.0" prefHeight="26.0" prefWidth="336.0" promptText="Test" />
-      <Text fill="#cacef2" layoutX="419.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="String">
-         <font>
-            <Font name="HelveticaNeue Bold" size="16.0" />
+            <Font name="HelveticaNeue Bold" size="17.0" />
          </font>
       </Text>
-      <Text fill="#cacef2" layoutX="419.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="String">
-         <font>
-            <Font name="HelveticaNeue Bold" size="16.0" />
-         </font>
-      </Text>
-      <Slider layoutX="417.0" layoutY="353.0" prefHeight="24.0" prefWidth="343.0" showTickMarks="true" />
-      <Text fill="#cacef2" layoutX="419.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
-         <font>
-            <Font name="HelveticaNeue Bold" size="16.0" />
-         </font>
-      </Text>
-      <Button layoutX="404.0" layoutY="489.0" mnemonicParsing="false" onAction="#CPU_Matrix" prefHeight="56.0" prefWidth="199.0" styleClass="buttons" text="RUN ALL" textFill="#1a1b22">
-         <font>
-            <Font name="HelveticaNeue Bold" size="12.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>
