@@ -1,28 +1,21 @@
 package ro.notfound.co_gui;
 
+import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import ro.notfound.co_gui.bench.IBenchmark;
-import ro.notfound.co_gui.bench.cpu.CPUMatrixMultiplication;
-import ro.notfound.co_gui.logging.ConsoleLogger;
-import ro.notfound.co_gui.logging.ILog;
-import ro.notfound.co_gui.logging.TimeUnit;
-import ro.notfound.co_gui.timing.ITimer;
-import ro.notfound.co_gui.timing.Timer;
-import javafx.scene.control.Button;
-import javafx.scene.control.Alert.AlertType;
-
 import java.io.IOException;
 
-public class CPU_SceneController {
+public class CPU_SceneController{
     private Stage stage;
     private Scene scene;
 
@@ -43,43 +36,47 @@ public class CPU_SceneController {
         stage.show();
     }
 
+    @FXML
+    TextField aes_input;
+    @FXML
+    TextField rsa_input;
 
     @FXML
-    protected void CPU_Matrix(ActionEvent go_score) throws IOException {
-        int matrixSize = 100; // initialize with matrix size
-        ITimer timer = new Timer();
-        ILog log = new ConsoleLogger();
-        IBenchmark bench = new CPUMatrixMultiplication();
-        int numThreads = Runtime.getRuntime().availableProcessors(); // get number of available threads
-        System.out.println("threads" + numThreads);
-        bench.initialize(matrixSize);
-        bench.warmUp();
+    private Slider matrix_slider;
 
-        long totalTime = 0;
-        for(int i = 1; i <= numThreads; i *= 2){
-            timer.start();
-            bench.run(i);
-            long time = timer.stop();
-            log.writeTime("[t="+i+"] finished in", time, TimeUnit.Sec);
-            totalTime += time;
+    @FXML
+    private Text txtOut;
 
-            double score = (double) matrixSize/( Math.log(time) * 10E-2* i);
-            log.write("Score: " + score);
 
-            System.out.println();
+
+    @FXML
+    protected synchronized void swtichToScore(ActionEvent score_view) throws IOException, InterruptedException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Score_View.fxml"));
+        Parent pane = (Parent) fxmlLoader.load();
+        stage = (Stage) ((Node) score_view.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(pane));
+        stage.show();
+        Score_SceneController scoreController = fxmlLoader.getController();
+        final Node source = (Node) score_view.getSource();
+        String id = source.getId();
+        String input;
+        switch (id){
+            case "aes":
+                System.out.println("User selected aes");
+                input = aes_input.getText();
+                break;
+            case "rsa":
+                System.out.println("User selected rsa");
+                input = rsa_input.getText();
+                break;
+            case "matrix":
+                System.out.println("User selected matrix");
+                scoreController.setOption(1);
+                break;
+            default:
+                System.out.println("User selected all");
+
         }
-        log.writeTime("Matrix multiplication took", totalTime, TimeUnit.Sec );
-        log.close();
-
-        Alert a = new Alert(AlertType.NONE);
-
-        long finalTotalTime = totalTime;
-        EventHandler<ActionEvent> event = e -> {
-            a.setAlertType(AlertType.CONFIRMATION);
-            a.setTitle("CPU MatrixMultiplication");
-            a.setContentText(String.valueOf(finalTotalTime));
-            a.show();
-        };
 
     }
     @FXML
@@ -108,5 +105,14 @@ public class CPU_SceneController {
         scene = new Scene(fxmlLoader.load());
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void initialize() {
+        matrix_slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                txtOut.setText(String.valueOf(newValue.intValue()));
+            }
+        });
     }
 }
