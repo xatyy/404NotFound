@@ -17,6 +17,7 @@ public class HelloController {
     private Stage stage;
     private Scene scene;
 
+
     @FXML
     protected void switchtoCPU(ActionEvent TO_CPU) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CPU_Scene.fxml"));

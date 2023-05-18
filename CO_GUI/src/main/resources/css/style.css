@@ -8,6 +8,14 @@
     url('../fonts/HelveticaNeueBold.tff');
 }
 
+
+
+.check-box .box{
+    -fx-background-color: #252731;
+    -fx-scale-y: 4;
+    -fx-scale-x: 5;
+}
+
 .buttons{
     -fx-background-radius: 9px;
     -fx-background-color:  #CACEF2;

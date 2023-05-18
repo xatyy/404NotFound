@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.Score_SceneController">
+   <children>
+      <ImageView fitHeight="605.0" fitWidth="853.0" layoutX="10.0" layoutY="10.0" opacity="0.39" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/stars.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="showCount" fill="#cacef2" layoutX="168.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Running Benchmark...">
+         <font>
+            <Font name="HelveticaNeue Bold" size="44.0" />
+         </font>
+      </Text>
+      <Button layoutX="300.0" layoutY="481.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="56.0" prefWidth="199.0" styleClass="buttons" text="OK" textFill="#1a1b22">
+         <font>
+            <Font name="HelveticaNeue Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="368.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/dino.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
