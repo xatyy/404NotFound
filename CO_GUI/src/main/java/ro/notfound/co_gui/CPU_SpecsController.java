@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
+import java.util.Scanner;
+
 import com.sun.management.OperatingSystemMXBean;
 
 public class CPU_SpecsController {
@@ -84,7 +86,7 @@ public class CPU_SpecsController {
 
         String userName = System.getProperty("user.name");
 
-        String text = processorname.getSystemProperties().get(("os.arch")).toUpperCase();
+        String text = getCpuModel();
         String text2 = osBean.getName() + " "+ osBean.getVersion();
         String text3 = totalRAMInGB + " GB RAM";
         String text4 = userName;
@@ -94,6 +96,55 @@ public class CPU_SpecsController {
         myLabelMemory.setText(text3);
         myLabelUsername.setText(text4);
 
+    }
+    public String getCpuModel() {
+        String osName = System.getProperty("os.name").toLowerCase();
+        String arch = System.getProperty("os.arch").toLowerCase();
+        String cpuModelWindows = "Unknown";
+
+        if (osName.contains("win")) { // Windows
+            try {
+                Process process = Runtime.getRuntime().exec("wmic cpu get name");
+                Scanner scanner = new Scanner(process.getInputStream());
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine().trim();
+                    if (!line.isEmpty() && !line.equalsIgnoreCase("name")) {
+                        cpuModelWindows = line;
+                        break;
+                    }
+                }
+                scanner.close();
+                return  cpuModelWindows.trim();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if (osName.contains("mac")) { // macOS
+            try {
+                Process process = Runtime.getRuntime().exec("sysctl -n machdep.cpu.brand_string");
+                Scanner scanner = new Scanner(process.getInputStream());
+                String cpuModel = scanner.nextLine();
+                scanner.close();
+                return cpuModel.trim();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Unknown";
+            }
+        } else if (osName.contains("nix") || osName.contains("nux") || osName.contains("aix")) { // Linux/Unix
+            try {
+                Process process = Runtime.getRuntime().exec("cat /proc/cpuinfo | grep 'model name' | uniq");
+                Scanner scanner = new Scanner(process.getInputStream());
+                String cpuModel = scanner.nextLine();
+                scanner.close();
+                return cpuModel.substring(cpuModel.indexOf(':') + 1).trim();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "Unknown";
+            }
+        } else { // Unsupported OS
+            return "Unknown";
+        }
+
+        return "Unknown";
     }
 
 }
