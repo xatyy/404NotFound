@@ -5,7 +5,16 @@
 
 @font-face {
     font-family: 'HelvetiNeue';
-    url('../fonts/HelveticaNeueBold.tff');
+    src: url('/fonts/HelveticaNeueBold.ttf');
+}
+
+.root {
+    -fx-font-family: "HelveticaNeue";
+}
+
+
+.title {
+    -fx-font-family: "HelveticaNeue";
 }
 
 
