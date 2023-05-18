@@ -73,15 +73,14 @@ public class CPU_SpecsController {
         stage.show();
     }
     @FXML
-    protected void GetSpecs() {
-
+    public void initialize(){
         OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
         RuntimeMXBean processorname = ManagementFactory.getRuntimeMXBean();
         Runtime memory = Runtime.getRuntime();
         OperatingSystemMXBean operatingSystemBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
         long totalPhysicalMemory;
         totalPhysicalMemory = operatingSystemBean.getTotalPhysicalMemorySize();
-        long totalRAMInGB = (totalPhysicalMemory / (1024 * 1024 * 1024) + 3);
+        long totalRAMInGB = (totalPhysicalMemory / (1024 * 1024 * 1024));
 
         String userName = System.getProperty("user.name");
 
@@ -94,7 +93,6 @@ public class CPU_SpecsController {
         myLabelProcessor.setText(text);
         myLabelMemory.setText(text3);
         myLabelUsername.setText(text4);
-
 
     }
 
