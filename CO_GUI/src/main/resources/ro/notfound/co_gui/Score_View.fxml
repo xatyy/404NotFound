@@ -14,7 +14,7 @@
             <Image url="@../../../img/stars.png" />
          </image>
       </ImageView>
-      <Text fx:id="showCount" fill="#cacef2" layoutX="168.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Running Benchmark...">
+      <Text id="title" fx:id="showCount" fill="#cacef2" layoutX="150.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Running Benchmark..." textAlignment="CENTER" wrappingWidth="500.0">
          <font>
             <Font name="HelveticaNeue Bold" size="44.0" />
          </font>
@@ -24,10 +24,15 @@
             <Font name="HelveticaNeue Bold" size="12.0" />
          </font>
       </Button>
-      <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="368.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="dino_gif" fitHeight="64.0" fitWidth="64.0" layoutX="368.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/dino.gif" />
          </image>
       </ImageView>
+      <Text fx:id="showScore" fill="#cacef2" layoutX="150.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="500.0">
+         <font>
+            <Font name="HelveticaNeue Bold" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

@@ -67,7 +67,10 @@
       <Button fx:id="matrix" layoutX="251.0" layoutY="326.0" mnemonicParsing="false" onAction="#swtichToScore" prefHeight="56.0" prefWidth="139.0" styleClass="buttons" text="Matrix Multiplication" textFill="#1a1b22">
          <font>
             <Font name="HelveticaNeue Bold" size="12.0" />
-         </font></Button>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Text fill="#cacef2" layoutX="251.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CPU Algorithms">
          <font>
             <Font name="HelveticaNeue Bold" size="44.0" />
@@ -77,11 +80,17 @@
          <font>
             <Font name="HelveticaNeue Bold" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button fx:id="rsa" layoutX="251.0" layoutY="250.0" mnemonicParsing="false" onAction="#swtichToScore" prefHeight="56.0" prefWidth="139.0" styleClass="buttons" text="RSA Encryption" textFill="#1a1b22">
          <font>
             <Font name="HelveticaNeue Bold" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Text fill="#cacef2" layoutX="419.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="String">
          <font>
@@ -93,7 +102,10 @@
             <Font name="HelveticaNeue Bold" size="16.0" />
          </font>
       </Text>
-      <Slider fx:id="matrix_slider" blockIncrement="500.0" layoutX="417.0" layoutY="353.0" majorTickUnit="500.0" max="10000.0" minorTickCount="0" prefHeight="24.0" prefWidth="343.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1000.0" />
+      <Slider fx:id="matrix_slider" blockIncrement="500.0" layoutX="417.0" layoutY="353.0" majorTickUnit="500.0" max="10000.0" minorTickCount="0" prefHeight="24.0" prefWidth="343.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1000.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Slider>
       <Text fill="#cacef2" layoutX="419.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
          <font>
             <Font name="HelveticaNeue Bold" size="16.0" />
@@ -103,6 +115,9 @@
          <font>
             <Font name="HelveticaNeue Bold" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Text fill="#cacef2" layoutX="254.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Run any of the tests with custom parameters" wrappingWidth="420.19200134277344">
          <font>

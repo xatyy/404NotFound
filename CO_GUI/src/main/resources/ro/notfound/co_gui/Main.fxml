@@ -71,7 +71,7 @@
             </Button>
          </children>
       </HBox>
-      <ImageView fitHeight="184.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+      <ImageView fx:id="sattelite" fitHeight="184.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
          <image>
             <Image url="@../../../img/antena.png" />
          </image>
