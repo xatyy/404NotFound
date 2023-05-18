@@ -6,6 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.bson.Document;
 import javafx.scene.control.Alert.AlertType;

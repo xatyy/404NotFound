@@ -65,11 +65,10 @@ public class Score_SceneController {
 
             System.out.println();
             //showCount.setText(String.valueOf(score));
-            if(i == 1){
+            if(i == 1) {
                 singleThread = (int) score;
-            }else if(i == numThreads){
-                multiThread = (int) score;
             }
+                multiThread = (int) score;
         }
         log.writeTime("Matrix multiplication took", totalTime, TimeUnit.Sec );
 

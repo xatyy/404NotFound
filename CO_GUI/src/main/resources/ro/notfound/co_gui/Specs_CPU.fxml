@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,23 +11,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.CPU_SceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.CPU_SpecsController">
    <children>
-      <ImageView fitHeight="605.0" fitWidth="853.0" layoutY="7.0" opacity="0.39" preserveRatio="true">
+      <ImageView fitHeight="605.0" fitWidth="853.0" layoutX="12.0" layoutY="7.0" opacity="0.39" preserveRatio="true">
          <image>
             <Image url="@../../../img/stars.png" />
          </image>
       </ImageView>
       <Pane blendMode="SRC_ATOP" prefHeight="600.0" prefWidth="223.0" styleClass="sidebar">
          <children>
-            <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Home">
-               <font>
-                  <Font name="HelveticaNeue Bold" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" onAction="#switchtoCPU" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Algorithm" textFill="#1a1b22">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
@@ -39,7 +33,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="12.0" layoutY="221.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="PC Specs">
+            <Button layoutX="12.0" layoutY="221.0" mnemonicParsing="false" onAction="#PC_Specs" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="PC Specs">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
@@ -55,6 +49,19 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button layoutX="12.0" layoutY="48.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Back">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="13.0" fitWidth="15.0" layoutX="28.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/arrow.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Text fill="#cacef2" layoutX="251.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC Specs">
@@ -62,10 +69,51 @@
             <Font name="HelveticaNeue Bold" size="44.0" />
          </font>
       </Text>
-      <Text fill="#cacef2" layoutX="251.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learn about your machine" wrappingWidth="420.19200134277344">
+      <Text fill="#cacef2" layoutX="240.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learn about your machine" wrappingWidth="420.19200134277344">
          <font>
-            <Font name="HelveticaNeue Bold" size="17.0" />
+            <Font size="20.0" />
          </font>
       </Text>
+      <Text fill="#cacef2" layoutX="240.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Processor:" wrappingWidth="420.19200134277344">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#cacef2" layoutX="239.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Operating-System:" wrappingWidth="199.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#cacef2" layoutX="240.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memory:" wrappingWidth="420.19200134277344">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="myLabelProcessor" layoutX="328.0" layoutY="299.0" prefHeight="21.0" prefWidth="458.0" textFill="#cacef2">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="myLabelOS" layoutX="394.0" layoutY="253.0" prefHeight="21.0" prefWidth="190.0" textFill="#cacef2">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="myLabelMemory" layoutX="313.0" layoutY="341.0" prefHeight="21.0" prefWidth="251.0" textFill="#cacef2">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <opaqueInsets>
+            <Insets bottom="2.0" top="2.0" />
+         </opaqueInsets>
+      </Label>
+      <Text fill="#cacef2" layoutX="240.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello:" wrappingWidth="420.19200134277344">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Label fx:id="myLabelUsername" layoutX="291.0" layoutY="114.0" prefHeight="21.0" prefWidth="190.0" textFill="#cacef2">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
