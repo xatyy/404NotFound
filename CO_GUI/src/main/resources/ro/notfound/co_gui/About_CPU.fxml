@@ -16,20 +16,15 @@
             <Image url="@../../../img/stars.png" />
          </image>
       </ImageView>
-      <Pane blendMode="SRC_ATOP" prefHeight="600.0" prefWidth="223.0" styleClass="sidebar">
+      <Pane blendMode="SRC_ATOP" layoutY="-4.0" prefHeight="614.0" prefWidth="233.0" styleClass="sidebar">
          <children>
-            <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Home">
+            <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Back">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-            </Button>
-            <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" onAction="#switchtoCPU" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Algorithm" textFill="#1a1b22">
-               <font>
-                  <Font name="HelveticaNeue Bold" size="12.0" />
-               </font>
             </Button>
             <Button layoutX="12.0" layoutY="163.0" mnemonicParsing="false" onAction="#History" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="History">
                <font>
@@ -47,7 +42,17 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="12.0" layoutY="279.0" mnemonicParsing="false" onAction="#About_CPU" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="About">
+            <ImageView fitHeight="13.0" fitWidth="15.0" layoutX="29.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/arrow.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="12.0" layoutY="276.0" mnemonicParsing="false" onAction="#About_CPU" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="About" textFill="#1a1b22">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" onAction="#switchtoCPU" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Algorithm">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
@@ -62,7 +67,12 @@
             <Font name="HelveticaNeue Bold" size="44.0" />
          </font>
       </Text>
-      <Text fill="#cacef2" layoutX="251.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="404(Not found) Benchmark is one of the most advanced benchmarks a human ever created" wrappingWidth="480.19200134277344">
+      <Text fill="#cacef2" layoutX="251.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="404 Not found Benchmark is one of the most advanced benchmarks a human ever created" wrappingWidth="480.19200134277344">
+         <font>
+            <Font name="HelveticaNeue Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#cacef2" layoutX="251.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="404 Not found is a benchmark application designed to assess the performance of CPUs and RAM modules. This software aims to provide users with a comprehensive evaluation of their hardware capabilities by conducting various tests and measurements. The name &quot;404 NOT FOUND&quot; adds a playful twist, drawing inspiration from the famous HTTP error message to convey the idea of searching for optimal performance." wrappingWidth="480.19200134277344">
          <font>
             <Font name="HelveticaNeue Bold" size="17.0" />
          </font>
