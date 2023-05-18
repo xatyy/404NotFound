@@ -64,14 +64,20 @@ public class CPU_SceneController{
             case "aes":
                 System.out.println("User selected aes");
                 input = aes_input.getText();
+                if(input.isEmpty())
+                    input = "404NotFound";
+                scoreController.setOption(0, input);
                 break;
             case "rsa":
                 System.out.println("User selected rsa");
                 input = rsa_input.getText();
+                if(input.isEmpty())
+                    input = "404NotFound";
+                scoreController.setOption(1, input);
                 break;
             case "matrix":
                 System.out.println("User selected matrix");
-                scoreController.setOption(1);
+                scoreController.setOption(2, String.valueOf(matrix_slider.getValue()));
                 break;
             default:
                 System.out.println("User selected all");

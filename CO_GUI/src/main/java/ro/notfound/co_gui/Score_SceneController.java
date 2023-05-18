@@ -6,19 +6,29 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ro.notfound.co_gui.bench.IBenchmark;
+import ro.notfound.co_gui.bench.cpu.CPUAES;
 import ro.notfound.co_gui.bench.cpu.CPUMatrixMultiplication;
+import ro.notfound.co_gui.bench.cpu.CPURSA;
 import ro.notfound.co_gui.logging.ConsoleLogger;
 import ro.notfound.co_gui.logging.ILog;
 import ro.notfound.co_gui.logging.TimeUnit;
 import ro.notfound.co_gui.timing.ITimer;
 import ro.notfound.co_gui.timing.Timer;
 
+import javax.crypto.SecretKey;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static java.lang.Integer.parseInt;
+import static ro.notfound.co_gui.bench.cpu.CPUAES.generateKey;
+import static ro.notfound.co_gui.logging.TimeUnit.toTimeUnit;
 
 public class Score_SceneController {
     ExecutorService threadPool = Executors.newWorkStealingPool();
@@ -26,7 +36,8 @@ public class Score_SceneController {
     private Stage stage;
     private Scene scene;
 
-    private static int option;
+    private int option;
+    private String arg;
 
     @FXML
     public void matrixMultiplication(int matrixSize){
@@ -38,6 +49,8 @@ public class Score_SceneController {
         System.out.println("threads" + numThreads);
         bench.initialize(matrixSize);
         bench.warmUp();
+        int singleThread = 0;
+        int multiThread = 0;
 
         long totalTime = 0;
         for(int i = 1; i <= numThreads; i *= 2){
@@ -51,22 +64,96 @@ public class Score_SceneController {
             log.write("Score: " + score);
 
             System.out.println();
-            showCount.setText(String.valueOf(score));
+            //showCount.setText(String.valueOf(score));
+            if(i == 1){
+                singleThread = (int) score;
+            }else if(i == numThreads){
+                multiThread = (int) score;
+            }
         }
         log.writeTime("Matrix multiplication took", totalTime, TimeUnit.Sec );
 
+        showScore.setText("Singlethread: " + singleThread + " Multithread: " + multiThread);
+        showCount.setText("Benchmark complete!");
+        dino_gif.setImage(new Image(getClass().getResource("/img/dino_happy.png").toString(), true));
         bench.getResult();
         log.close();
     }
 
     @FXML
-    protected void setOption(int n){
+    public void cpuAES(String message) throws NoSuchAlgorithmException {
+        Timer time =new Timer();
+        IBenchmark aesBenchmark = new CPUAES();
+        TimeUnit  timeUnit=TimeUnit.Sec;
+        // Initialize the benchmark
+        int keySize=256;
+        SecretKey secretKey = generateKey(keySize);
+
+        aesBenchmark.initialize(message, secretKey,keySize);
+
+        // Warm up the benchmark
+        aesBenchmark.warmUp();
+
+        // Run the benchmark
+        time.start();
+        aesBenchmark.run(message);
+        double timer=toTimeUnit(time.stop(),timeUnit);
+
+        System.out.println(((CPUAES)aesBenchmark).score(timer,keySize));
+
+        int score = (int) ((CPUAES)aesBenchmark).score(timer,keySize);
+
+        // Print the benchmark result
+        System.out.println(aesBenchmark.getResult());
+        showScore.setText("Score: " + score);
+        showCount.setText("Benchmark complete!");
+        dino_gif.setImage(new Image(getClass().getResource("/img/dino_happy.png").toString(), true));
+    }
+
+    @FXML
+    public void cpuRSA(String message){
+        // Create a new benchmark instance
+        IBenchmark rsaBenchmark = new CPURSA();
+        ITimer time = new Timer();
+        TimeUnit timeUnit=TimeUnit.Sec;
+        int keySize=1024;
+        // Initialize the benchmark
+        rsaBenchmark.initialize(keySize);
+
+        // Warm up the benchmark
+        rsaBenchmark.warmUp();
+
+        // Run the benchmark
+        // rsaBenchmark.run("hello this is diana's text to encrypt");
+
+        time.start();
+        rsaBenchmark.run(message);
+        double timer=toTimeUnit(time.stop(),timeUnit);
+        int nrKeys=2;
+        System.out.println(((CPURSA)rsaBenchmark).score(timer,nrKeys));
+
+        int score = (int) ((CPURSA)rsaBenchmark).score(timer,nrKeys);
+        // Print the benchmark result
+        System.out.println(rsaBenchmark.getResult());
+        showScore.setText("Score: " + score);
+        showCount.setText("Benchmark complete!");
+        dino_gif.setImage(new Image(getClass().getResource("/img/dino_happy.png").toString(), true));
+    }
+
+    @FXML
+    protected void setOption(int n, String args){
         option = n;
-        System.out.println(option);
+        arg = args;
     }
 
     @FXML
     private Text showCount;
+
+    @FXML
+    private Text showScore;
+
+    @FXML
+    private ImageView dino_gif;
 
     @FXML
     protected void go_Back(ActionEvent go_back) throws IOException {
@@ -79,27 +166,52 @@ public class Score_SceneController {
 
     public synchronized void initialize() throws InterruptedException {
 
-        /*Platform.runLater(() -> {
-            if(option == 1){
-                matrixMultiplication(1500);
-            }
-        });*/
+
+
 
         Runnable task = () -> {
 
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             // Emulate a long task
             // Use Platform.runLater()
-                threadPool.execute(() -> matrixMultiplication(1500));
 
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+            System.out.println(option);
+
+            Platform.runLater(() -> {
+                if(option == 0) {
+
+                    threadPool.execute(() -> {
+                        try {
+                            cpuAES(arg);
+                        } catch (NoSuchAlgorithmException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
                 }
+                else if(option == 1){
+                    threadPool.execute(() -> cpuRSA(arg));
+                } else if(option == 2) {
+
+                    String [] integer = arg.split("\\.");
+                    System.out.println(integer[0]);
+
+                    threadPool.execute(() -> matrixMultiplication(Integer.parseInt(integer[0])));
+                }
+            });
+
+
+
 
 
             // Stop count down and remove the GIF
             Platform.runLater(() -> {
+
+
                 //showCount.setText("Done");
             });
         };
