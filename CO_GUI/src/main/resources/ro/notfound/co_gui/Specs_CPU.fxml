@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.CPU_SceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.CPU_SpecsController">
    <children>
       <ImageView fitHeight="605.0" fitWidth="853.0" layoutY="7.0" opacity="0.39" preserveRatio="true">
          <image>
@@ -18,14 +19,6 @@
       </ImageView>
       <Pane blendMode="SRC_ATOP" prefHeight="600.0" prefWidth="223.0" styleClass="sidebar">
          <children>
-            <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Home">
-               <font>
-                  <Font name="HelveticaNeue Bold" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
             <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" onAction="#switchtoCPU" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Algorithm" textFill="#1a1b22">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
@@ -39,7 +32,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="12.0" layoutY="221.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="PC Specs">
+            <Button layoutX="12.0" layoutY="221.0" mnemonicParsing="false" onAction="#PC_Specs" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="PC Specs">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
@@ -55,6 +48,19 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button layoutX="12.0" layoutY="48.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Back">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="13.0" fitWidth="15.0" layoutX="28.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/arrow.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Text fill="#cacef2" layoutX="251.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC Specs">
@@ -67,5 +73,31 @@
             <Font name="HelveticaNeue Bold" size="17.0" />
          </font>
       </Text>
+      <Text fill="#cacef2" layoutX="251.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Processor" wrappingWidth="420.19200134277344">
+         <font>
+            <Font name="HelveticaNeue Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#cacef2" layoutX="251.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Operating-System" wrappingWidth="175.18359375">
+         <font>
+            <Font name="HelveticaNeue Bold" size="17.0" />
+         </font>
+      </Text>
+      <Text fill="#cacef2" layoutX="251.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memory" wrappingWidth="420.19200134277344">
+         <font>
+            <Font name="HelveticaNeue Bold" size="17.0" />
+         </font>
+      </Text>
+      <Button fx:id="check" layoutX="251.0" layoutY="337.0" mnemonicParsing="false" onAction="#GetSpecs" prefHeight="13.0" prefWidth="88.0" styleClass="inactive" text="Check">
+         <font>
+            <Font name="HelveticaNeue Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="myLabelProcessor" layoutX="251.0" layoutY="232.0" prefHeight="18.0" prefWidth="110.0" textFill="#cacef2" />
+      <Label fx:id="myLabelOS" layoutX="251.0" layoutY="174.0" prefHeight="18.0" prefWidth="110.0" textFill="#cacef2" />
+      <Label fx:id="myLabelMemory" layoutX="251.0" layoutY="291.0" prefHeight="18.0" prefWidth="110.0" textFill="#cacef2" />
    </children>
 </AnchorPane>
