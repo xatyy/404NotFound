@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import java.lang.management.OperatingSystemMXBean;
 import java.lang.management.RuntimeMXBean;
+import com.sun.management.OperatingSystemMXBean;
 
 public class CPU_SpecsController {
     private Stage stage;
@@ -23,6 +23,8 @@ public class CPU_SpecsController {
     private Label myLabelOS ;
     @FXML
     private Label myLabelMemory ;
+    @FXML
+    private Label myLabelUsername;
     @FXML
     private Button check;
 
@@ -73,20 +75,25 @@ public class CPU_SpecsController {
     @FXML
     protected void GetSpecs() {
 
-        OperatingSystemMXBean osBean = ManagementFactory.getOperatingSystemMXBean();
+        OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
         RuntimeMXBean processorname = ManagementFactory.getRuntimeMXBean();
         Runtime memory = Runtime.getRuntime();
-        long maxMemory = memory.maxMemory();
+        OperatingSystemMXBean operatingSystemBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+        long totalPhysicalMemory;
+        totalPhysicalMemory = operatingSystemBean.getTotalPhysicalMemorySize();
+        long totalRAMInGB = (totalPhysicalMemory / (1024 * 1024 * 1024) + 3);
+
+        String userName = System.getProperty("user.name");
 
         String text = processorname.getSystemProperties().get(("os.arch")).toUpperCase();
-
         String text2 = osBean.getName() + " "+ osBean.getVersion();
-
-        String text3 = String.format("%.2f GB",maxMemory / (1024.0 * 1024.0 * 1024.0));
+        String text3 = totalRAMInGB + " GB RAM";
+        String text4 = userName;
 
         myLabelOS.setText(text2);
         myLabelProcessor.setText(text);
         myLabelMemory.setText(text3);
+        myLabelUsername.setText(text4);
 
 
     }

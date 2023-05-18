@@ -3,6 +3,7 @@ package ro.notfound.co_gui;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 
