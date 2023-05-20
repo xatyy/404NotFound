@@ -2,47 +2,47 @@ package ro.notfound.co_gui.bench.ram;
 
 import ro.notfound.co_gui.bench.IBenchmark;
 
-import java.lang.reflect.Array;
-
 public class RAMmemoryUsage implements IBenchmark {
-    private int  workload;
+
+    //ArraySize at least 8000
+    //Input for ArraySize
     private long sum=0;
-    private int size = 1000000; // size of the array in bytes
+    private int Arraysize ; // size of the array in bytes
     private long beforeUsedMem;
     private long afterUsedMem;
     private long usedMemory;
-    private long average;
+    private double average;
+    private double score;
     @Override
     public void initialize(Object... params) {
-        workload = (int) params[0];
+        throw new UnsupportedOperationException(
+                "Method not implemented.");
     }
 
     @Override
     public void warmUp() {
-        for(int i = 0; i<20;i++){
-            beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-            byte[] warmUparray = new byte[size];
-            afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-            usedMemory = afterUsedMem - beforeUsedMem;
-        }
+        throw new UnsupportedOperationException(
+                "Method not implemented.");
     }
 
     @Override
     public void run() {
-        for(int i = 0; i<workload;i++){
-            beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-            byte[] array = new byte[size];
-            afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-            usedMemory = afterUsedMem - beforeUsedMem;
-            sum+=usedMemory;
-        }
-        average=sum/workload;
+        throw new UnsupportedOperationException(
+                "Method not implemented. Use run() instead");
     }
 
     @Override
     public void run(Object... options) {
-        throw new UnsupportedOperationException(
-                "Method not implemented. Use run() instead");
+        Arraysize = (Integer) options[0];
+        for(int i = 0; i<50;i++){
+            beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+            byte[] array = new byte[Arraysize];
+            afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+            usedMemory = afterUsedMem - beforeUsedMem;
+            sum+=usedMemory;
+        }
+        average=sum/50;
+        score= (average/Arraysize)*100;
     }
 
     @Override
@@ -59,7 +59,9 @@ public class RAMmemoryUsage implements IBenchmark {
 
     @Override
     public String getResult() {
-        return "The average used memory is: "+average+" bytes";
+        String str = new String();
+        str= Double.toString(score);
+        return str;
     }
 
 }
