@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.CPU_SceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ro.notfound.co_gui.CPU_SceneController">
    <children>
-      <ImageView fitHeight="605.0" fitWidth="853.0" layoutX="2.0" layoutY="9.0" opacity="0.39" preserveRatio="true">
+      <ImageView fitHeight="605.0" fitWidth="853.0" layoutX="10.0" layoutY="10.0" opacity="0.39" preserveRatio="true">
          <image>
             <Image url="@../../../img/stars.png" />
          </image>
@@ -28,7 +28,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="Algorithm" textFill="#1a1b22">
+            <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" onAction="#switchtoCPU" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="Algorithm" textFill="#1a1b22">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
