@@ -9,21 +9,26 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ro.notfound.co_gui.CPU_HistoryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.CPU_HistoryController">
    <children>
-      <ImageView fitHeight="605.0" fitWidth="853.0" layoutX="10.0" layoutY="10.0" opacity="0.39" preserveRatio="true">
+      <ImageView fitHeight="605.0" fitWidth="853.0" opacity="0.39" preserveRatio="true">
          <image>
             <Image url="@../../../img/stars.png" />
          </image>
       </ImageView>
+      <Text fill="#cacef2" layoutX="251.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaderboard">
+         <font>
+            <Font name="HelveticaNeue Bold" size="44.0" />
+         </font>
+      </Text>
+      <Text fill="#cacef2" layoutX="251.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Which PC is the best?" wrappingWidth="480.19200134277344">
+         <font>
+            <Font name="HelveticaNeue Bold" size="17.0" />
+         </font>
+      </Text>
       <Pane blendMode="SRC_ATOP" prefHeight="600.0" prefWidth="223.0" styleClass="sidebar">
          <children>
-            <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" onAction="#switchtoCPU" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Algorithm" textFill="#1a1b22">
-               <font>
-                  <Font name="HelveticaNeue Bold" size="12.0" />
-               </font>
-            </Button>
-            <Button layoutX="12.0" layoutY="221.0" mnemonicParsing="false" onAction="#PC_Specs" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="PC Specs">
+            <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Back">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
@@ -31,7 +36,20 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Back">
+            <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" onAction="#switchtoCPU" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Algorithm" textFill="#1a1b22">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="12.0" layoutY="163.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="Leaderboard">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Button>
+            <Button layoutX="12.0" layoutY="221.0" mnemonicParsing="false" onAction="#PC_Specs" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="PC Specs">
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
@@ -44,33 +62,7 @@
                   <Image url="@../../../img/arrow.png" />
                </image>
             </ImageView>
-            <Button layoutX="12.0" layoutY="162.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="History">
-               <font>
-                  <Font name="HelveticaNeue Bold" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button layoutX="12.0" layoutY="273.0" mnemonicParsing="false" onAction="#About_CPU" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="About">
-               <font>
-                  <Font name="HelveticaNeue Bold" size="12.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
          </children>
       </Pane>
-      <Text fill="#cacef2" layoutX="251.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="History">
-         <font>
-            <Font name="HelveticaNeue Bold" size="44.0" />
-         </font>
-      </Text>
-      <Text fill="#cacef2" layoutX="251.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A table of previous benchmark tests" wrappingWidth="480.19200134277344">
-         <font>
-            <Font name="HelveticaNeue Bold" size="17.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>
