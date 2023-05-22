@@ -74,6 +74,8 @@ public class CPU_SpecsController {
         stage.setScene(scene);
         stage.show();
     }
+
+
     @FXML
     public void initialize(){
         OperatingSystemMXBean osBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();

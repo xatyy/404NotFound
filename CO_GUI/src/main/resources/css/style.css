@@ -5,24 +5,47 @@
 
 @font-face {
     font-family: 'HelvetiNeue';
-    src: url('/fonts/HelveticaNeueBold.ttf');
+    url('/fonts/HelveticaNeueBold.ttf');
 }
 
 .root {
-    -fx-font-family: "HelveticaNeue";
+    -fx-font-family: "HelvetiNeue";
 }
 
 
 .title {
-    -fx-font-family: "HelveticaNeue";
+    -fx-font-family: "HelvetiNeue";
 }
 
 
-
-.check-box .box{
+.unchecked {
+    -fx-background-radius: 9px;
+    -fx-text-fill: #CACEF2;
     -fx-background-color: #252731;
-    -fx-scale-y: 4;
-    -fx-scale-x: 5;
+}
+
+.checked {
+    -fx-background-radius: 9px;
+    -fx-text-fill: #252731;
+    -fx-background-color:  #CACEF2;
+}
+.checked:hover {
+    -fx-border-color: #252731;
+    -fx-border-width: 1px;
+    -fx-border-radius: 9px;
+}
+
+.button_disabled {
+    -fx-background-radius: 9px;
+    -fx-background-color:  #CACEF2;
+    -fx-opacity: 0.2;
+    -fx-cursor: default;
+}
+
+.unchecked:hover {
+    -fx-border-color: #CACEF2;
+    -fx-border-width: 1px;
+    -fx-border-radius: 9px;
 }
 
 .buttons{

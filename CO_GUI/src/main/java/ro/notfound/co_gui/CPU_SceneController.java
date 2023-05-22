@@ -9,7 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -18,6 +20,10 @@ import java.io.IOException;
 public class CPU_SceneController {
     private Stage stage;
     private Scene scene;
+
+    private int [] options = new int[4];
+
+    private boolean disabled = true;
 
     @FXML
     protected void go_Back(ActionEvent go_back) throws IOException{
@@ -70,48 +76,91 @@ public class CPU_SceneController {
     TextField rsa_input;
 
     @FXML
+    Button run;
+
+    @FXML
     private Slider matrix_slider;
 
     @FXML
     private Text txtOut;
 
+    @FXML
+    TextArea inputString;
+    @FXML
+    protected void setTests(ActionEvent setTestsEvent) {
+        final Node source = (Node) setTestsEvent.getSource();
+        String id = source.getId();
+        switch (id) {
+            case "aes":
+                if(options[0] == 0){
+                    source.getStyleClass().remove("unchecked");
+                    source.getStyleClass().add("checked");
+                    options[0] = 1;
+                }else{
+                    source.getStyleClass().remove("checked");
+                    source.getStyleClass().add("unchecked");
+                    options[0] = 0;
+                }
+                break;
+            case "rsa":
+                if(options[1] == 0){
+                    source.getStyleClass().remove("unchecked");
+                    source.getStyleClass().add("checked");
+                    options[1] = 1;
+                }else{
+                    source.getStyleClass().remove("checked");
+                    source.getStyleClass().add("unchecked");
+                    options[1] = 0;
+                }
+                break;
+            case "matrix":
+                if(options[2] == 0){
+                    source.getStyleClass().remove("unchecked");
+                    source.getStyleClass().add("checked");
+                    options[2] = 1;
+                }else{
+                    source.getStyleClass().remove("checked");
+                    source.getStyleClass().add("unchecked");
+                    options[2] = 0;
+                }
+                break;
+            default:
+                ;
+        }
+        int check = 0;
+        for (int i = 0; i < 4; i++){
+            if(options[i] == 1){
+                check++;
+            }
+        }
+
+        System.out.println(check);
+        if(check == 0){
+            run.getStyleClass().remove("buttons");
+            run.getStyleClass().add("button_disabled");
+            disabled = true;
+        } else {
+            run.getStyleClass().remove("button_disabled");
+            run.getStyleClass().add("buttons");
+            disabled = false;
+        }
+    }
+
 
 
     @FXML
     protected synchronized void swtichToScore(ActionEvent score_view) throws IOException, InterruptedException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Score_View.fxml"));
-        Parent pane = (Parent) fxmlLoader.load();
-        stage = (Stage) ((Node) score_view.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(pane));
-        stage.show();
-        Score_SceneController scoreController = fxmlLoader.getController();
-        final Node source = (Node) score_view.getSource();
-        String id = source.getId();
-        String input;
-        switch (id){
-            case "aes":
-                System.out.println("User selected aes");
-                input = aes_input.getText();
-                if(input.isEmpty())
-                    input = "404NotFound";
-                scoreController.setOption(0, input);
-                break;
-            case "rsa":
-                System.out.println("User selected rsa");
-                input = rsa_input.getText();
-                if(input.isEmpty())
-                    input = "404NotFound";
-                scoreController.setOption(1, input);
-                break;
-            case "matrix":
-                System.out.println("User selected matrix");
-                scoreController.setOption(2, String.valueOf(matrix_slider.getValue()));
-                break;
-            default:
-                System.out.println("User selected all");
-
+        if(!disabled) {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Score_View.fxml"));
+            Parent pane = (Parent) fxmlLoader.load();
+            stage = (Stage) ((Node) score_view.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(pane));
+            stage.show();
+            Score_SceneController scoreController = fxmlLoader.getController();
+            int matrixSize = (int) matrix_slider.getValue();
+            String encryptionString = inputString.getText();
+            scoreController.runBenchmark(options, encryptionString, matrixSize);
         }
-
     }
 
 

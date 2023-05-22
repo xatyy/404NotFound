@@ -1,6 +1,5 @@
 package ro.notfound.co_gui;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +24,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.lang.Integer.parseInt;
 import static ro.notfound.co_gui.bench.cpu.CPUAES.generateKey;
@@ -73,8 +73,7 @@ public class Score_SceneController {
         log.writeTime("Matrix multiplication took", totalTime, TimeUnit.Sec );
 
         showScore.setText("Singlethread: " + singleThread + " Multithread: " + multiThread);
-        showCount.setText("Benchmark complete!");
-        dino_gif.setImage(new Image(getClass().getResource("/img/dino_happy.png").toString(), true));
+
         bench.getResult();
         log.close();
     }
@@ -105,8 +104,7 @@ public class Score_SceneController {
         // Print the benchmark result
         System.out.println(aesBenchmark.getResult());
         showScore.setText("Score: " + score);
-        showCount.setText("Benchmark complete!");
-        dino_gif.setImage(new Image(getClass().getResource("/img/dino_happy.png").toString(), true));
+
     }
 
     @FXML
@@ -133,10 +131,83 @@ public class Score_SceneController {
 
         int score = (int) ((CPURSA)rsaBenchmark).score(timer,nrKeys);
         // Print the benchmark result
-        System.out.println(rsaBenchmark.getResult());
+
         showScore.setText("Score: " + score);
-        showCount.setText("Benchmark complete!");
-        dino_gif.setImage(new Image(getClass().getResource("/img/dino_happy.png").toString(), true));
+
+    }
+
+    @FXML
+    protected void runBenchmark(int [] options, String inputString, int matrixSize) {
+        AtomicInteger testLenght = new AtomicInteger();
+        AtomicInteger testDone = new AtomicInteger(0);
+
+        for (int i = 0; i < 3; i++) {
+            if( options[i] == 1){
+                testLenght.getAndIncrement();
+            }
+        }
+
+        Runnable benchTask = () -> threadPool.execute(() -> {
+                if (options[0] == 1) {
+                    try {
+                        testDone.getAndIncrement();
+                        showCount.setText("Running test " + testDone + "/" + testLenght + "...");
+                        Thread.sleep(2500);
+                        cpuAES(inputString);
+                        Thread.sleep(2500);
+                    } catch (NoSuchAlgorithmException e) {
+                        throw new RuntimeException(e);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                } if (options[1] == 1) {
+                try {
+                    testDone.getAndIncrement();
+                    showCount.setText("Running test " + testDone + "/" + testLenght + "...");
+                    Thread.sleep(2500);
+                    cpuRSA(inputString);
+                    Thread.sleep(2500);
+
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+                } if (options[2] == 1) {
+                try {
+                    testDone.getAndIncrement();
+                    showCount.setText("Running test " + testDone + "/" + testLenght + "...");
+                    Thread.sleep(2500);
+                    matrixMultiplication(matrixSize);
+                    Thread.sleep(2500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                } if (options[3] == 1) {
+                    // To implement
+                }
+
+            System.out.println(testLenght);
+            System.out.println(testDone);
+
+
+            if(testLenght == testDone){
+                showCount.setText("Benchmark completed!");
+                dino_gif.setImage(new Image(getClass().getResource("/img/dino_happy.png").toString(), true));
+            }
+
+
+        });
+
+
+
+        Thread thread = new Thread(benchTask);
+        thread.setDaemon(true);
+        thread.start();
+
+
+
+
     }
 
     @FXML
@@ -163,10 +234,8 @@ public class Score_SceneController {
         stage.show();
     }
 
+    /*
     public synchronized void initialize() throws InterruptedException {
-
-
-
 
         Runnable task = () -> {
 
@@ -220,4 +289,5 @@ public class Score_SceneController {
         thread.start();
 
     }
+    */
 }
