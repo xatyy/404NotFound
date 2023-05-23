@@ -1,7 +1,7 @@
 module ro.notfound.co_gui {
+    requires javafx.graphics;
     requires javafx.controls;
     requires javafx.fxml;
-
     requires org.kordamp.bootstrapfx.core;
 
     requires java.management;
