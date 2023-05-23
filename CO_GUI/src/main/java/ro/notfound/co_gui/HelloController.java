@@ -13,8 +13,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -27,11 +30,43 @@ import java.util.concurrent.Executors;
 import static com.mongodb.client.model.Filters.eq;
 
 public class HelloController {
+    private double xOffset = 0;
+    private double yOffset = 0;
     @FXML
     private Label welcomeText;
     private Stage stage;
     private Scene scene;
+    @FXML
+    private Button btnMin;
+    @FXML
+    private Button btnClose;
+    @FXML
+    private Pane topPane;
 
+    @FXML
+    protected void handleCloseAction(){
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    protected void handleMinifyAction(){
+        Stage stage = (Stage) btnMin.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    protected void handleClickAction(MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
+
+    @FXML
+    protected void handleMovementAction(MouseEvent event) {
+        Stage stage = (Stage) topPane.getScene().getWindow();
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
+    }
     ExecutorService threadPool = Executors.newWorkStealingPool();
 
     @FXML
