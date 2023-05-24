@@ -17,6 +17,40 @@
     -fx-font-family: "HelvetiNeue";
 }
 
+.error {
+    -fx-border-color: #ff4343;
+    -fx-border-width: 2px;
+    -fx-border-radius: 9px;
+}
+
+.text-area {
+    -fx-background-radius: 9px;
+}
+
+.text-area .content{
+    -fx-background-radius: 9px;
+}
+
+.top-bar {
+    -fx-background-radius: 9px 9px 0px 0px;
+    -fx-background-color: #252731;
+}
+
+.top-bar .buttons{
+    -fx-background-radius: 6px;
+    -fx-background-color: #CACEF2;
+    -fx-font-family: "HelvetiNeue";
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
 
 .unchecked {
     -fx-background-radius: 9px;
