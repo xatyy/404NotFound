@@ -90,7 +90,7 @@ public class CPUAES implements IBenchmark {
         return new String(decryptedBytes);
     }
     public double score(double time,int keySize){
-        double score=plaintext.length()/(time*keySize+1);
+        double score=plaintext.length()*keySize/((time+1)*100.0);
         return score;
     }
 

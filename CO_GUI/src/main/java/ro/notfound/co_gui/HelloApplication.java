@@ -25,8 +25,8 @@ public class HelloApplication extends Application {
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
+                xOffset = event.getX();
+                yOffset = event.getY();
             }
         });
         root.setOnMouseDragged(new EventHandler<MouseEvent>() {

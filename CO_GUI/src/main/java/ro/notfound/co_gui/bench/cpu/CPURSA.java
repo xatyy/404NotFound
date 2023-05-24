@@ -90,7 +90,7 @@ public class CPURSA implements IBenchmark {
         return new String(decryptedBytes);
     }
     public double score(double time,int nrKeys){
-        double score=plaintext.length()*nrKeys/(time*keySize+1);
+        double score=plaintext.length()*nrKeys*keySize/((time+1)*1000.0);
         return score;
     }
 }

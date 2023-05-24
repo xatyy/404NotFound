@@ -121,7 +121,7 @@
             <Font name="HelveticaNeue Bold" size="16.0" />
          </font>
       </Text>
-      <TextArea fx:id="inputString" layoutX="418.0" layoutY="190.0" prefHeight="118.0" prefWidth="336.0" promptText="Start writing here..." />
+      <TextArea fx:id="inputString" layoutX="418.0" layoutY="190.0" prefHeight="118.0" prefWidth="336.0" promptText="Start writing here..." wrapText="true" />
       <ImageView disable="true" fitHeight="13.0" fitWidth="16.0" layoutX="370.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/check.png" />
@@ -137,5 +137,10 @@
             <Image url="@../../../img/check.png" />
          </image>
       </ImageView>
+      <Text fx:id="errorString" fill="#ff8f8f" layoutX="419.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="334.49999999999994">
+         <font>
+            <Font name="HelveticaNeue Bold" size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
