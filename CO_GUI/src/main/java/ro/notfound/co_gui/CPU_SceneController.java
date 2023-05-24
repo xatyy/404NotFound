@@ -86,6 +86,9 @@ public class CPU_SceneController {
 
     @FXML
     TextArea inputString;
+
+    @FXML
+    private Text errorString;
     @FXML
     protected void setTests(ActionEvent setTestsEvent) {
         final Node source = (Node) setTestsEvent.getSource();
@@ -151,15 +154,24 @@ public class CPU_SceneController {
     @FXML
     protected synchronized void swtichToScore(ActionEvent score_view) throws IOException, InterruptedException {
         if(!disabled) {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Score_View.fxml"));
-            Parent pane = (Parent) fxmlLoader.load();
-            stage = (Stage) ((Node) score_view.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(pane));
-            stage.show();
-            Score_SceneController scoreController = fxmlLoader.getController();
-            int matrixSize = (int) matrix_slider.getValue();
-            String encryptionString = inputString.getText();
-            scoreController.runBenchmark(options, encryptionString, matrixSize);
+            if(!inputString.getText().isEmpty() || options[0] + options[1] == 0) {
+                inputString.getStyleClass().remove("error");
+                errorString.setText("");
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Score_View.fxml"));
+                Parent pane = (Parent) fxmlLoader.load();
+                stage = (Stage) ((Node) score_view.getSource()).getScene().getWindow();
+                Score_SceneController scoreController = fxmlLoader.getController();
+               // scene.setOnKeyPressed(e -> scoreController.jump());
+                stage.setScene(new Scene(pane));
+                stage.show();
+
+                int matrixSize = (int) matrix_slider.getValue();
+                String encryptionString = inputString.getText();
+                scoreController.runBenchmark(options, encryptionString, matrixSize);
+            } else {
+                inputString.getStyleClass().add("error");
+                errorString.setText("String cannot be empty!");
+            }
         }
     }
 
