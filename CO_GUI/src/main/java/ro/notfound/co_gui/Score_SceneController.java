@@ -6,6 +6,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.InsertOneResult;
+import com.sun.management.OperatingSystemMXBean;
 import javafx.animation.Animation;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
@@ -16,10 +17,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -38,6 +42,7 @@ import ro.notfound.co_gui.timing.Timer;
 
 import javax.crypto.SecretKey;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.security.NoSuchAlgorithmException;
@@ -58,6 +63,46 @@ public class Score_SceneController {
 
     private Stage stage;
     private Scene scene;
+
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    @FXML
+    private Button btnMin;
+    @FXML
+    private Button btnClose;
+    @FXML
+    private Pane topPane;
+
+    private boolean aes;
+    private boolean rsa;
+    private boolean matrixM;
+    private boolean ram;
+
+    @FXML
+    protected void handleCloseAction(){
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    protected void handleMinifyAction(){
+        Stage stage = (Stage) btnMin.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    protected void handleClickAction(MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
+
+    @FXML
+    protected void handleMovementAction(MouseEvent event) {
+        Stage stage = (Stage) topPane.getScene().getWindow();
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
+    }
 
     CPU_SpecsController cpu = new CPU_SpecsController();
 
@@ -184,7 +229,7 @@ public class Score_SceneController {
     }
 
     @FXML
-    public void RAM(int size, AtomicInteger testNo){
+    public double RAM(int size, AtomicInteger testNo){
                 IBenchmark bench = new RAMmemoryUsage();
                 ILog log = new ConsoleLogger();
                 bench.run(size);
@@ -198,69 +243,142 @@ public class Score_SceneController {
                 // Print the benchmark result
 
                 score4.setText("RAM Usage Score: " + (double) Math.round(score * 100) / 100);
+
+                return score;
     }
 
 
     private Boolean checkDuplicateDatabase() {
 
-        try (MongoClient mongoClient = MongoClients.create(connectionString)) {
-            MongoDatabase database = mongoClient.getDatabase("404Database");
-            MongoCollection<Document> collection = database.getCollection("userScores");
-            Document myDoc = collection.find(eq("MAC", getPCID())).first();
-            System.out.println(myDoc);
-            if(!(myDoc == null)){
-                return false;
-            }
-        }
+        if(ram) {
 
-        return true;
+            try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+                MongoDatabase database = mongoClient.getDatabase("404Database");
+                MongoCollection<Document> collection = database.getCollection("RAMScores");
+                Document myDoc = collection.find(eq("MAC", getPCID())).first();
+                System.out.println(myDoc);
+                if(!(myDoc == null)){
+                    return false;
+                }
+            }
+
+            return true;
+
+        } else {
+
+            try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+                MongoDatabase database = mongoClient.getDatabase("404Database");
+                MongoCollection<Document> collection = database.getCollection("userScores");
+                Document myDoc = collection.find(eq("MAC", getPCID())).first();
+                System.out.println(myDoc);
+                if (!(myDoc == null)) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
 
     }
 
-    private void appendDatabase(double matrix, double AES, double RSA){
+
+    private void appendDatabase(double matrix, double AES, double RSA, double RAM){
+
+        OperatingSystemMXBean operatingSystemBean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+        long totalPhysicalMemory;
+
+        totalPhysicalMemory = operatingSystemBean.getTotalPhysicalMemorySize();
+        long totalRAMInGB = (totalPhysicalMemory / (1024 * 1024 * 1024));
 
        // String connectionString = "mongodb+srv://xaty:KtnZPZybZtMfSn8t@404database.coe1uer.mongodb.net/?retryWrites=true&w=majority";
         if(checkDuplicateDatabase()) {
-            try (MongoClient mongoClient = MongoClients.create(connectionString)) {
-                MongoDatabase database = mongoClient.getDatabase("404Database");
-                MongoCollection<Document> collection = database.getCollection("userScores");
-                try {
-                    InsertOneResult result = collection.insertOne(new Document()
-                            .append("_id", new ObjectId())
-                            .append("userName", System.getProperty("user.name"))
-                            .append("cpuModel", cpu.getCpuModel())
-                            .append("scoreAES", AES)
-                            .append("scoreRSA", RSA)
-                            .append("scoreMatrixSingle", matrixSingle)
-                            .append("scoreMatrixMulti", matrixMulti)
-                            .append("MAC", getPCID()));
-                    System.out.println("Success! Inserted document id: " + result.getInsertedId());
-                } catch (MongoException me) {
-                    System.err.println("Unable to insert due to an error: " + me);
+            if(ram) {
+                try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+                    MongoDatabase database = mongoClient.getDatabase("404Database");
+                    MongoCollection<Document> collection = database.getCollection("RAMScores");
+                    try {
+                        InsertOneResult result = collection.insertOne(new Document()
+                                .append("_id", new ObjectId())
+                                .append("userName", System.getProperty("user.name"))
+                                .append("ramGB", totalRAMInGB)
+                                .append("scoreRAM", RAM)
+                                .append("scoreRSA", RSA)
+                                .append("MAC", getPCID()));
+                        System.out.println("Success! Inserted document id: " + result.getInsertedId());
+                    } catch (MongoException me) {
+                        System.err.println("Unable to insert due to an error: " + me);
+                    }
+                }
+            }else {
+
+                try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+                    MongoDatabase database = mongoClient.getDatabase("404Database");
+                    MongoCollection<Document> collection = database.getCollection("userScores");
+                    try {
+                        InsertOneResult result = collection.insertOne(new Document()
+                                .append("_id", new ObjectId())
+                                .append("userName", System.getProperty("user.name"))
+                                .append("cpuModel", cpu.getCpuModel())
+                                .append("scoreAES", AES)
+                                .append("scoreRSA", RSA)
+                                .append("scoreMatrixSingle", matrixSingle)
+                                .append("scoreMatrixMulti", matrixMulti)
+                                .append("MAC", getPCID()));
+                        System.out.println("Success! Inserted document id: " + result.getInsertedId());
+                    } catch (MongoException me) {
+                        System.err.println("Unable to insert due to an error: " + me);
+                    }
                 }
             }
         } else {
-            try (MongoClient mongoClient = MongoClients.create(connectionString)) {
-                MongoDatabase database = mongoClient.getDatabase("404Database");
-                MongoCollection<Document> collection = database.getCollection("userScores");
-                try {
-                    Document query = new Document();
-                    query.append("MAC",getPCID());
-                    Document setData = new Document();
-                    setData.append("userName", System.getProperty("user.name"))
-                            .append("cpuModel", cpu.getCpuModel())
-                            .append("scoreAES", AES)
-                            .append("scoreRSA", RSA)
-                            .append("scoreMatrixSingle", matrix)
-                            .append("scoreMatrixMulti", matrix)
-                            .append("MAC", getPCID());
-                    Document update = new Document();
-                    update.append("$set", setData);
-                    collection.updateOne(query, update);
-                } catch (MongoException me) {
-                    System.err.println("Unable to update due to an error: " + me);
+
+            if(ram) {
+
+                try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+                    MongoDatabase database = mongoClient.getDatabase("404Database");
+                    MongoCollection<Document> collection = database.getCollection("RAMScores");
+                    try {
+                        Document query = new Document();
+                        query.append("MAC", getPCID());
+                        Document setData = new Document();
+                        setData.append("userName", System.getProperty("user.name"))
+                                .append("ramGB", totalRAMInGB)
+                                .append("scoreRAM", RAM)
+                                .append("scoreRSA", RSA)
+                                .append("MAC", getPCID());
+                        Document update = new Document();
+                        update.append("$set", setData);
+                        collection.updateOne(query, update);
+                    } catch (MongoException me) {
+                        System.err.println("Unable to update due to an error: " + me);
+                    }
                 }
+
+            } else {
+
+                try (MongoClient mongoClient = MongoClients.create(connectionString)) {
+                    MongoDatabase database = mongoClient.getDatabase("404Database");
+                    MongoCollection<Document> collection = database.getCollection("userScores");
+                    try {
+                        Document query = new Document();
+                        query.append("MAC", getPCID());
+                        Document setData = new Document();
+                        setData.append("userName", System.getProperty("user.name"))
+                                .append("cpuModel", cpu.getCpuModel())
+                                .append("scoreAES", AES)
+                                .append("scoreRSA", RSA)
+                                .append("scoreMatrixSingle", matrixSingle)
+                                .append("scoreMatrixMulti", matrixMulti)
+                                .append("MAC", getPCID());
+                        Document update = new Document();
+                        update.append("$set", setData);
+                        collection.updateOne(query, update);
+                    } catch (MongoException me) {
+                        System.err.println("Unable to update due to an error: " + me);
+                    }
+                }
+
             }
         }
     }
@@ -321,10 +439,11 @@ public class Score_SceneController {
                 }
                 } if (options[3] == 1) {
                 try {
+                    ram = true;
                     testDone.getAndIncrement();
                     showCount.setText("Running RAM test " + testDone + "/" + testLenght + "...");
                     Thread.sleep(2500);
-                    RAM(size, testDone);
+                    scoreRAM.set(RAM(size, testDone));
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -336,8 +455,12 @@ public class Score_SceneController {
                 dino_gif.setImage(new Image(getClass().getResource("/img/dino_happy.png").toString(), true));
                 parallelTransition.stop();
                 if(testDone.get() == 3){
-                    appendDatabase(scoreMatrix.get(), scoreAES.get(), scoreRSA.get());
+                    appendDatabase(scoreMatrix.get(), scoreAES.get(), scoreRSA.get(), 0);
                 }
+            }
+
+            if(ram) {
+                appendDatabase(0, 0, 0, scoreRAM.get());
             }
 
 
@@ -358,11 +481,15 @@ public class Score_SceneController {
             InetAddress ip = InetAddress.getLocalHost();
             NetworkInterface network = NetworkInterface.getByInetAddress(ip);
             byte[] mac = network.getHardwareAddress();
+            String userName = System.getProperty("user.name");
             StringBuilder sb = new StringBuilder();
             if (mac != null) {
                 for (int i = 0; i < mac.length; i++) {
                     sb.append(String.format("%02X", mac[i]));
                 }
+            }
+            if(sb == null){
+                return sb.toString() + userName;
             }
             return sb.toString();
         } catch (Exception e) {

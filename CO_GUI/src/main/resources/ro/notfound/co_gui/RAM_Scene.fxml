@@ -10,15 +10,90 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.RAM_SceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.RAM_SceneController">
    <children>
-      <Pane blendMode="SRC_ATOP" prefHeight="600.0" prefWidth="229.0" styleClass="sidebar">
+      <Text fx:id="errorString" fill="#ff8f8f" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="334.49999999999994">
+         <font>
+            <Font name="HelveticaNeue Bold" size="14.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="605.0" fitWidth="853.0" layoutY="50.0" opacity="0.39" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/stars.png" />
+         </image>
+      </ImageView>
+      <Text fill="#cacef2" layoutX="261.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RAM Algorithm">
+         <font>
+            <Font name="HelveticaNeue Bold" size="44.0" />
+         </font>
+      </Text>
+      <Button layoutX="261.0" layoutY="193.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="139.0" styleClass="active" text="RAM Memory Usage">
+         <font>
+            <Font name="HelveticaNeue Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView disable="true" fitHeight="13.0" fitWidth="16.0" layoutX="380.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/check.png" />
+         </image>
+      </ImageView>
+      <Slider fx:id="ram_slider" blockIncrement="50000.0" layoutX="437.0" layoutY="222.0" majorTickUnit="50000.0" max="1000000.0" minorTickCount="0" prefHeight="24.0" prefWidth="343.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Slider>
+      <Text fill="#cacef2" layoutX="439.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
+         <font>
+            <Font name="HelveticaNeue Bold" size="16.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtOut" fill="#cacef2" layoutX="480.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+         <font>
+            <Font name="HelveticaNeue Bold" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="run" layoutX="424.0" layoutY="549.0" mnemonicParsing="false" onAction="#swtichToScore" prefHeight="56.0" prefWidth="199.0" styleClass="buttons" text="RUN" textFill="#1a1b22">
+         <font>
+            <Font name="HelveticaNeue Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Pane blendMode="SRC_ATOP" layoutY="34.0" prefHeight="615.0" prefWidth="223.0" styleClass="sidebar">
          <children>
-            <ImageView fitHeight="605.0" fitWidth="853.0" opacity="0.39" preserveRatio="true">
-               <image>
-                  <Image url="@../../../img/stars.png" />
-               </image>
-            </ImageView>
+            <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Back">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="12.0" layoutY="105.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="Algorithm" textFill="#1a1b22">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="12.0" layoutY="163.0" mnemonicParsing="false" onAction="#History" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Leaderboard">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="12.0" layoutY="221.0" mnemonicParsing="false" onAction="#PC_Specs" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="PC Specs">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView disable="true" fitHeight="13.0" fitWidth="15.0" layoutX="29.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../img/arrow.png" />
@@ -29,87 +104,31 @@
                   <Image url="@../../../img/dino_fail.png" />
                </image>
             </ImageView>
-            <Slider fx:id="ram_slider" blockIncrement="50000.0" layoutX="427.0" layoutY="172.0" majorTickUnit="50000.0" max="1000000.0" minorTickCount="0" prefHeight="24.0" prefWidth="343.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Slider>
-            <Text fill="#cacef2" layoutX="429.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
-               <font>
-                  <Font name="HelveticaNeue Bold" size="16.0" />
-               </font>
-            </Text>
-            <Text fx:id="txtOut" fill="#cacef2" layoutX="470.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-               <font>
-                  <Font name="HelveticaNeue Bold" size="16.0" />
-               </font>
-            </Text>
-            <Text fx:id="errorString" fill="#ff8f8f" layoutX="429.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="334.49999999999994">
-               <font>
-                  <Font name="HelveticaNeue Bold" size="14.0" />
-               </font>
-            </Text>
-            <Button fx:id="run" layoutX="414.0" layoutY="499.0" mnemonicParsing="false" onAction="#swtichToScore" prefHeight="56.0" prefWidth="199.0" styleClass="buttons" text="RUN" textFill="#1a1b22">
-               <font>
-                  <Font name="HelveticaNeue Bold" size="12.0" />
-               </font>
+         </children>
+      </Pane>
+      <Pane fx:id="topPane" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
+         <children>
+            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="buttons" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" styleClass="buttons" text="_">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="16.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/icon1.png" />
+               </image>
+            </ImageView>
+            <Text fill="#d4d9ff" layoutX="52.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="404 Not Found">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
-      <Button layoutX="22.0" layoutY="57.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Back">
-         <font>
-            <Font name="HelveticaNeue Bold" size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="22.0" layoutY="115.0" mnemonicParsing="false" onAction="#switchtoRAM" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="Algorithm" textFill="#1a1b22">
-         <font>
-            <Font name="HelveticaNeue Bold" size="12.0" />
-         </font>
-      </Button>
-      <Button layoutX="22.0" layoutY="173.0" mnemonicParsing="false" onAction="#History" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Leaderboard">
-         <font>
-            <Font name="HelveticaNeue Bold" size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button layoutX="22.0" layoutY="231.0" mnemonicParsing="false" onAction="#PC_Specs" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="PC Specs">
-         <font>
-            <Font name="HelveticaNeue Bold" size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <ImageView disable="true" fitHeight="13.0" fitWidth="15.0" layoutX="39.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/arrow.png" />
-         </image>
-      </ImageView>
-      <Text fill="#cacef2" layoutX="261.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RAM Algorithm">
-         <font>
-            <Font name="HelveticaNeue Bold" size="44.0" />
-         </font>
-      </Text>
-      <Button layoutX="261.0" layoutY="143.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="139.0" styleClass="active" text="RAM Memory Usage">
-         <font>
-            <Font name="HelveticaNeue Bold" size="12.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <ImageView disable="true" fitHeight="13.0" fitWidth="16.0" layoutX="380.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/check.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>
