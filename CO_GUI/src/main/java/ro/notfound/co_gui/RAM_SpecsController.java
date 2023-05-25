@@ -6,7 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +28,42 @@ public class RAM_SpecsController {
     private Label myLabelMemory ;
     @FXML
     private Label myLabelUsername;
+
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    @FXML
+    private Button btnMin;
+    @FXML
+    private Button btnClose;
+    @FXML
+    private Pane topPane;
+
+    @FXML
+    protected void handleCloseAction(){
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    protected void handleMinifyAction(){
+        Stage stage = (Stage) btnMin.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    protected void handleClickAction(MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
+
+    @FXML
+    protected void handleMovementAction(MouseEvent event) {
+        Stage stage = (Stage) topPane.getScene().getWindow();
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
+    }
+
     @FXML
     protected void switchtoRAM(ActionEvent TO_RAM) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("RAM_Scene.fxml"));

@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="CO_GUI">
+    <output-path>$PROJECT_DIR$/out/artifacts/CO_GUI</output-path>
+    <root id="root">
+      <element id="archive" name="CO_GUI.jar">
+        <element id="module-output" name="CO_GUI" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -10,9 +10,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.bson.Document;
 
@@ -30,6 +33,41 @@ public class CPU_HistoryController {
 
     private Stage stage;
     private Scene scene;
+
+    private double xOffset = 0;
+    private double yOffset = 0;
+
+    @FXML
+    private Button btnMin;
+    @FXML
+    private Button btnClose;
+    @FXML
+    private Pane topPane;
+
+    @FXML
+    protected void handleCloseAction(){
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    protected void handleMinifyAction(){
+        Stage stage = (Stage) btnMin.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+    @FXML
+    protected void handleClickAction(MouseEvent event) {
+        xOffset = event.getSceneX();
+        yOffset = event.getSceneY();
+    }
+
+    @FXML
+    protected void handleMovementAction(MouseEvent event) {
+        Stage stage = (Stage) topPane.getScene().getWindow();
+        stage.setX(event.getScreenX() - xOffset);
+        stage.setY(event.getScreenY() - yOffset);
+    }
 
     ExecutorService threadPool = Executors.newWorkStealingPool();
 
@@ -101,8 +139,9 @@ public class CPU_HistoryController {
                             String cpuModel = document.getString("cpuModel");
                             Double scoreAES = document.getDouble("scoreAES");
                             Double scoreRSA = document.getDouble("scoreRSA");
-                            Double scoreMatrix = document.getDouble("scoreMatrix");
-                           data.add(new Leaderboard(userName, cpuModel, scoreAES, scoreRSA, scoreMatrix));
+                            Double scoreMatrixSingle = document.getDouble("scoreMatrixSingle");
+                            Double scoreMatrixMulti = document.getDouble("scoreMatrixMulti");
+                           data.add(new Leaderboard(userName, cpuModel, scoreAES, scoreRSA, scoreMatrixSingle, scoreMatrixMulti));
                        }
 
                         TableColumn<Leaderboard, String> userColumn = new TableColumn<>("Username");
@@ -117,14 +156,18 @@ public class CPU_HistoryController {
                         TableColumn<Leaderboard, String> rsaColumn = new TableColumn<>("Score RSA");
                         rsaColumn.setCellValueFactory(new PropertyValueFactory<>("scoreRSA"));
 
-                        TableColumn<Leaderboard, String> matrixColumn = new TableColumn<>("Score Matrix");
-                        matrixColumn.setCellValueFactory(new PropertyValueFactory<>("scoreMatrix"));
+                        TableColumn<Leaderboard, String> matrixColumnSingle = new TableColumn<>("Score Matrix Single");
+                        matrixColumnSingle.setCellValueFactory(new PropertyValueFactory<>("scoreMatrixSingle"));
+
+                        TableColumn<Leaderboard, String> matrixColumnMulti = new TableColumn<>("Score Matrix Multi");
+                        matrixColumnMulti.setCellValueFactory(new PropertyValueFactory<>("scoreMatrixMulti"));
 
                         leaderboard.getColumns().add(userColumn);
                         leaderboard.getColumns().add(cpuColumn);
                         leaderboard.getColumns().add(aesColumn);
                         leaderboard.getColumns().add(rsaColumn);
-                        leaderboard.getColumns().add(matrixColumn);
+                        leaderboard.getColumns().add(matrixColumnSingle);
+                        leaderboard.getColumns().add(matrixColumnMulti);
 
                         leaderboard.setItems(data);
 
@@ -144,14 +187,16 @@ public class CPU_HistoryController {
         private String cpuModel;
         private Double scoreAES;
         private Double scoreRSA;
-        private Double scoreMatrix;
+        private Double scoreMatrixSingle;
+        private Double scoreMatrixMulti;
 
-        public Leaderboard(String userName, String cpuModel, Double scoreAES, Double scoreRSA, Double scoreMatrix) {
+        public Leaderboard(String userName, String cpuModel, Double scoreAES, Double scoreRSA, Double scoreMatrixSingle, Double scoreMatrixMulti) {
             this.userName = userName;
             this.cpuModel = cpuModel;
             this.scoreAES = scoreAES;
             this.scoreRSA = scoreRSA;
-            this.scoreMatrix = scoreMatrix;
+            this.scoreMatrixSingle = scoreMatrixSingle;
+            this.scoreMatrixMulti = scoreMatrixMulti;
         }
 
         public String getUserName() {
@@ -171,8 +216,11 @@ public class CPU_HistoryController {
         }
 
 
-        public double getScoreMatrix() {
-            return scoreMatrix;
+        public double getScoreMatrixSingle() {
+            return scoreMatrixSingle;
+        }
+        public double getScoreMatrixMulti() {
+            return scoreMatrixMulti;
         }
 
     }

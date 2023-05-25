@@ -42,8 +42,8 @@ public class RAMmemoryUsage implements IBenchmark {
             sum+=usedMemory;
         }
 
-        average=sum/50;
-        score= (Arraysize/(average+1)*10);
+        average= (long) (sum/50.0);
+        score= (long) (Arraysize/(average+1)*10.0);
     }
 
 

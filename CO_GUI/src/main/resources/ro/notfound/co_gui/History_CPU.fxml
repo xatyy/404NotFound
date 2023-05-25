@@ -10,24 +10,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.CPU_HistoryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.CPU_HistoryController">
    <children>
-      <ImageView fitHeight="605.0" fitWidth="853.0" opacity="0.39" preserveRatio="true">
+      <ImageView fitHeight="605.0" fitWidth="853.0" layoutY="50.0" opacity="0.39" preserveRatio="true">
          <image>
             <Image url="@../../../img/stars.png" />
          </image>
       </ImageView>
-      <Text fill="#cacef2" layoutX="251.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaderboard">
+      <Text fill="#cacef2" layoutX="251.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leaderboard">
          <font>
             <Font name="HelveticaNeue Bold" size="44.0" />
          </font>
       </Text>
-      <Text fill="#cacef2" layoutX="251.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Which PC is the best?" wrappingWidth="480.19200134277344">
+      <Text fill="#cacef2" layoutX="251.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Which PC is the best?" wrappingWidth="480.19200134277344">
          <font>
             <Font name="HelveticaNeue Bold" size="17.0" />
          </font>
       </Text>
-      <Pane blendMode="SRC_ATOP" prefHeight="600.0" prefWidth="223.0" styleClass="sidebar">
+      <Pane blendMode="SRC_ATOP" layoutY="34.0" prefHeight="616.0" prefWidth="223.0" styleClass="sidebar">
          <children>
             <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Back">
                <font>
@@ -65,6 +65,30 @@
             </ImageView>
          </children>
       </Pane>
-      <TableView fx:id="leaderboard" layoutX="251.0" layoutY="158.0" prefHeight="200.0" prefWidth="530.0" />
+      <TableView fx:id="leaderboard" layoutX="251.0" layoutY="208.0" prefHeight="200.0" prefWidth="530.0" />
+      <Pane fx:id="topPane" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
+         <children>
+            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="buttons" text="X">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" styleClass="buttons" text="_">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="25.0" fitWidth="23.0" layoutX="16.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../img/icon1.png" />
+               </image>
+            </ImageView>
+            <Text fill="#d4d9ff" layoutX="52.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="404 Not Found">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
