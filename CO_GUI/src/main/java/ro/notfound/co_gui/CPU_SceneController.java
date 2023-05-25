@@ -90,6 +90,8 @@ public class CPU_SceneController {
     @FXML
     private Text errorString;
     @FXML
+    private Text errorString1;
+    @FXML
     protected void setTests(ActionEvent setTestsEvent) {
         final Node source = (Node) setTestsEvent.getSource();
         String id = source.getId();
@@ -147,6 +149,7 @@ public class CPU_SceneController {
             run.getStyleClass().add("buttons");
             disabled = false;
         }
+
     }
 
 
@@ -154,9 +157,10 @@ public class CPU_SceneController {
     @FXML
     protected synchronized void swtichToScore(ActionEvent score_view) throws IOException, InterruptedException {
         if(!disabled) {
-            if(!inputString.getText().isEmpty() || options[0] + options[1] == 0) {
+            if((!inputString.getText().isEmpty() || options[0] + options[1] == 0) && (matrix_slider.getValue() > 0 || options[2] == 0) ) {
                 inputString.getStyleClass().remove("error");
                 errorString.setText("");
+                errorString1.setText("");
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Score_View.fxml"));
                 Parent pane = (Parent) fxmlLoader.load();
                 stage = (Stage) ((Node) score_view.getSource()).getScene().getWindow();
@@ -169,8 +173,13 @@ public class CPU_SceneController {
                 String encryptionString = inputString.getText();
                 scoreController.runBenchmark(options, encryptionString, matrixSize);
             } else {
-                inputString.getStyleClass().add("error");
-                errorString.setText("String cannot be empty!");
+                if(inputString.getText().isEmpty() && options[0] + options[1] > 0) {
+                    inputString.getStyleClass().add("error");
+                    errorString.setText("String cannot be empty!");
+                }
+                if(matrix_slider.getValue() == 0){
+                    errorString1.setText("Matrix size cannot be 0!");
+                }
             }
         }
     }

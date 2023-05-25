@@ -41,9 +41,11 @@ public class RAMmemoryUsage implements IBenchmark {
             usedMemory = afterUsedMem - beforeUsedMem;
             sum+=usedMemory;
         }
+
         average=sum/50;
-        score= (average/Arraysize)*100;
+        score= (Arraysize/(average+1)*10);
     }
+
 
     @Override
     public void cancel() {

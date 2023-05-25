@@ -2,7 +2,6 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -66,13 +65,6 @@
             </ImageView>
          </children>
       </Pane>
-      <TableView layoutX="251.0" layoutY="158.0" prefHeight="200.0" prefWidth="480.0">
-        <columns>
-          <TableColumn prefWidth="114.0" text="Username" />
-          <TableColumn prefWidth="106.0" text="AES Score" />
-            <TableColumn prefWidth="118.0" text="RSA Score" />
-            <TableColumn prefWidth="141.0" text="Matrix Score" />
-        </columns>
-      </TableView>
+      <TableView fx:id="leaderboard" layoutX="251.0" layoutY="158.0" prefHeight="200.0" prefWidth="530.0" />
    </children>
 </AnchorPane>
