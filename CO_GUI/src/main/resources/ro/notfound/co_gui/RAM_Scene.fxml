@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,6 +29,34 @@
                   <Image url="@../../../img/dino_fail.png" />
                </image>
             </ImageView>
+            <Slider fx:id="ram_slider" blockIncrement="50000.0" layoutX="427.0" layoutY="172.0" majorTickUnit="50000.0" max="1000000.0" minorTickCount="0" prefHeight="24.0" prefWidth="343.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Slider>
+            <Text fill="#cacef2" layoutX="429.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="txtOut" fill="#cacef2" layoutX="470.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text fx:id="errorString" fill="#ff8f8f" layoutX="429.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="334.49999999999994">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="14.0" />
+               </font>
+            </Text>
+            <Button fx:id="run" layoutX="414.0" layoutY="499.0" mnemonicParsing="false" onAction="#swtichToScore" prefHeight="56.0" prefWidth="199.0" styleClass="buttons" text="RUN" textFill="#1a1b22">
+               <font>
+                  <Font name="HelveticaNeue Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
       <Button layoutX="22.0" layoutY="57.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Back">
@@ -69,7 +98,7 @@
             <Font name="HelveticaNeue Bold" size="44.0" />
          </font>
       </Text>
-      <Button layoutX="261.0" layoutY="143.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="139.0" styleClass="inactive" text="RAM Memory Usage">
+      <Button layoutX="261.0" layoutY="143.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="139.0" styleClass="active" text="RAM Memory Usage">
          <font>
             <Font name="HelveticaNeue Bold" size="12.0" />
          </font>
@@ -77,5 +106,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <ImageView disable="true" fitHeight="13.0" fitWidth="16.0" layoutX="380.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/check.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

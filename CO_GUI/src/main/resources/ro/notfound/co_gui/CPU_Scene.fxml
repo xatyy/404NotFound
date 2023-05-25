@@ -94,7 +94,7 @@
             <Font name="HelveticaNeue Bold" size="16.0" />
          </font>
       </Text>
-      <Slider fx:id="matrix_slider" blockIncrement="500.0" layoutX="417.0" layoutY="353.0" majorTickUnit="500.0" max="10000.0" minorTickCount="0" prefHeight="24.0" prefWidth="343.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1000.0">
+      <Slider fx:id="matrix_slider" blockIncrement="500.0" layoutX="417.0" layoutY="353.0" majorTickUnit="500.0" max="10000.0" minorTickCount="0" prefHeight="24.0" prefWidth="343.0" showTickLabels="true" showTickMarks="true" snapToTicks="true">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Slider>
@@ -116,7 +116,7 @@
             <Font name="HelveticaNeue Bold" size="17.0" />
          </font>
       </Text>
-      <Text fx:id="txtOut" fill="#cacef2" layoutX="460.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000">
+      <Text fx:id="txtOut" fill="#cacef2" layoutX="460.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
          <font>
             <Font name="HelveticaNeue Bold" size="16.0" />
          </font>
@@ -138,6 +138,11 @@
          </image>
       </ImageView>
       <Text fx:id="errorString" fill="#ff8f8f" layoutX="419.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="334.49999999999994">
+         <font>
+            <Font name="HelveticaNeue Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="errorString1" fill="#ff8f8f" layoutX="419.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="334.49999999999994">
          <font>
             <Font name="HelveticaNeue Bold" size="14.0" />
          </font>

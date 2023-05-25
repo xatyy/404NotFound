@@ -1,15 +1,20 @@
 package ro.notfound.co_gui;
 
 import com.sun.management.OperatingSystemMXBean;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -28,6 +33,17 @@ public class RAM_SceneController {
     private Label myLabelMemory ;
     @FXML
     private Label myLabelUsername;
+
+    @FXML
+    private Slider ram_slider;
+
+    @FXML
+    private Text txtOut;
+
+    @FXML
+    private Text errorString;
+
+    private int [] options = new int[4];
 
     @FXML
     protected void History(ActionEvent history) throws IOException {
@@ -64,6 +80,33 @@ public class RAM_SceneController {
         stage.setScene(scene);
         stage.show();
 
+    }
+
+    @FXML
+    protected synchronized void swtichToScore(ActionEvent score_view) throws IOException, InterruptedException {
+            if(ram_slider.getValue() != 0) {
+                errorString.setText("");
+                options[3] = 1;
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Score_View.fxml"));
+                Parent pane = (Parent) fxmlLoader.load();
+                stage = (Stage) ((Node) score_view.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(pane));
+                stage.show();
+                Score_SceneController scoreController = fxmlLoader.getController();
+                int size = (int) ram_slider.getValue();
+                scoreController.runBenchmark(options, " ", size);
+            } else {
+                errorString.setText("Size cannot be 0 !");
+            }
+    }
+
+    public void initialize() {
+        ram_slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                txtOut.setText(String.valueOf(newValue.intValue()));
+            }
+        });
     }
 
 
