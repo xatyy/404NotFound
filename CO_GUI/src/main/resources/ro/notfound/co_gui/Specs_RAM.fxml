@@ -18,59 +18,6 @@
             <Image url="@../../../img/stars.png" />
          </image>
       </ImageView>
-      <Text fill="#cacef2" layoutX="271.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC Specs">
-         <font>
-            <Font name="HelveticaNeue Bold" size="44.0" />
-         </font>
-      </Text>
-      <Text fill="#cacef2" layoutX="260.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Learn about your machine" wrappingWidth="420.19200134277344">
-         <font>
-            <Font name="HelveticaNeue Bold" size="20.0" />
-         </font>
-      </Text>
-      <Text fill="#cacef2" layoutX="260.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Processor:" wrappingWidth="420.19200134277344">
-         <font>
-            <Font name="HelveticaNeue Bold" size="18.0" />
-         </font>
-      </Text>
-      <Text fill="#cacef2" layoutX="259.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Operating-System:" wrappingWidth="199.0">
-         <font>
-            <Font name="HelveticaNeue Bold" size="18.0" />
-         </font>
-      </Text>
-      <Text fill="#cacef2" layoutX="260.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memory:" wrappingWidth="420.19200134277344">
-         <font>
-            <Font name="HelveticaNeue Bold" size="18.0" />
-         </font>
-      </Text>
-      <Text fill="#cacef2" layoutX="260.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello:" wrappingWidth="420.19200134277344">
-         <font>
-            <Font name="HelveticaNeue Bold" size="20.0" />
-         </font>
-      </Text>
-      <Label fx:id="myLabelProcessor" layoutX="348.0" layoutY="369.0" prefHeight="21.0" prefWidth="458.0" textFill="#cacef2">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="myLabelOS" layoutX="414.0" layoutY="323.0" prefHeight="21.0" prefWidth="190.0" textFill="#cacef2">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="myLabelMemory" layoutX="333.0" layoutY="411.0" prefHeight="21.0" prefWidth="251.0" textFill="#cacef2">
-         <font>
-            <Font size="15.0" />
-         </font>
-         <opaqueInsets>
-            <Insets bottom="2.0" top="2.0" />
-         </opaqueInsets>
-      </Label>
-      <Label fx:id="myLabelUsername" layoutX="311.0" layoutY="184.0" prefHeight="21.0" prefWidth="190.0" textFill="#cacef2">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
       <Pane blendMode="SRC_ATOP" layoutY="34.0" prefHeight="632.0" prefWidth="223.0" styleClass="sidebar">
          <children>
             <Button layoutX="12.0" layoutY="47.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="38.0" prefWidth="199.0" styleClass="inactive" text="Back">
@@ -112,14 +59,14 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="topPane" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
+      <Pane fx:id="topPane" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
          <children>
-            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="buttons" text="X">
+            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" scaleX="1.2" styleClass="buttons" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" styleClass="buttons" text="_">
+            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" scaleX="1.2" styleClass="buttons" text="_">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -136,5 +83,58 @@
             </Text>
          </children>
       </Pane>
+      <Text fill="#cacef2" layoutX="261.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PC Specs">
+         <font>
+            <Font name="HelveticaNeue Bold" size="44.0" />
+         </font>
+      </Text>
+      <Text fill="#cacef2" layoutX="262.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="View details about your machine" wrappingWidth="420.19200134277344">
+         <font>
+            <Font name="HelveticaNeue Bold" size="20.0" />
+         </font>
+      </Text>
+      <Text fill="#cacef2" layoutX="262.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Processor:" wrappingWidth="420.19200134277344">
+         <font>
+            <Font name="HelveticaNeue Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#cacef2" layoutX="262.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Operating-System:" wrappingWidth="199.0">
+         <font>
+            <Font name="HelveticaNeue Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#cacef2" layoutX="262.0" layoutY="318.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Memory:" wrappingWidth="420.19200134277344">
+         <font>
+            <Font name="HelveticaNeue Bold" size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="myLabelProcessor" layoutX="364.0" layoutY="270.0" prefHeight="21.0" prefWidth="458.0" textFill="#cacef2">
+         <font>
+            <Font name="HelveticaNeue Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="myLabelOS" layoutX="430.0" layoutY="236.0" prefHeight="21.0" prefWidth="190.0" textFill="#cacef2">
+         <font>
+            <Font name="HelveticaNeue Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="myLabelMemory" layoutX="347.0" layoutY="302.0" prefHeight="21.0" prefWidth="251.0" textFill="#cacef2">
+         <font>
+            <Font name="HelveticaNeue Bold" size="15.0" />
+         </font>
+         <opaqueInsets>
+            <Insets bottom="2.0" top="2.0" />
+         </opaqueInsets>
+      </Label>
+      <Text fill="#cacef2" layoutX="262.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello," wrappingWidth="420.19200134277344">
+         <font>
+            <Font name="HelveticaNeue Bold" size="23.0" />
+         </font>
+      </Text>
+      <Label fx:id="myLabelUsername" layoutX="328.0" layoutY="153.0" prefHeight="21.0" prefWidth="190.0" textFill="#cacef2">
+         <font>
+            <Font name="HelveticaNeue Bold" size="23.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

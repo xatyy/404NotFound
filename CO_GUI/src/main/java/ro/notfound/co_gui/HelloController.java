@@ -19,13 +19,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.bson.Document;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import org.slf4j.LoggerFactory;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -57,8 +61,8 @@ public class HelloController {
 
     @FXML
     protected void handleClickAction(MouseEvent event) {
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
+        xOffset = event.getX();
+        yOffset = event.getY();
     }
 
     @FXML
@@ -74,6 +78,7 @@ public class HelloController {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CPU_Scene.fxml"));
         stage = (Stage) ((Node)TO_CPU.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
@@ -84,6 +89,7 @@ public class HelloController {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("RAM_Scene.fxml"));
         stage = (Stage) ((Node)TO_RAM.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
@@ -96,7 +102,8 @@ public class HelloController {
     private ImageView no_wifi;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws IOException {
+
 
         final RotateTransition rt = new RotateTransition(Duration.millis(15000), sattelite);
         rt.setByAngle(360);
@@ -111,13 +118,14 @@ public class HelloController {
 
                 threadPool.execute( () -> {
                     try {
+
                         System.out.println("Trying db connection----------");
                         MongoClient mongoClient = MongoClients.create(connectionString);
                         MongoDatabase database = mongoClient.getDatabase("404Database");
                         MongoCollection<Document> collection = database.getCollection("userScores");
                         Document doc = collection.find(eq("userName", "PC-1")).first();
                     } catch (Exception e) {
-                        System.out.println(e);
+                        e.printStackTrace();
                         no_wifi.setOpacity(1);
                     }
                 });

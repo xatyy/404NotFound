@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -70,8 +71,8 @@ public class RAM_SceneController {
 
     @FXML
     protected void handleClickAction(MouseEvent event) {
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
+        xOffset = event.getX();
+        yOffset = event.getY();
     }
 
     @FXML
@@ -86,8 +87,10 @@ public class RAM_SceneController {
     @FXML
     protected void History(ActionEvent history) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("History_RAM.fxml"));
+
         stage = (Stage) ((Node) history.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
@@ -95,8 +98,10 @@ public class RAM_SceneController {
     @FXML
     protected void go_Back(ActionEvent go_back) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
+
         stage = (Stage) ((Node)go_back.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
@@ -104,8 +109,10 @@ public class RAM_SceneController {
     @FXML
     protected void switchtoRAM(ActionEvent TO_RAM) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("RAM_Scene.fxml"));
+
         stage = (Stage) ((Node)TO_RAM.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
@@ -113,8 +120,10 @@ public class RAM_SceneController {
     @FXML
     protected void PC_Specs(ActionEvent TO_Specs) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Specs_RAM.fxml"));
+
         stage = (Stage) ((Node) TO_Specs.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
@@ -126,9 +135,11 @@ public class RAM_SceneController {
                 errorString.setText("");
                 options[3] = 1;
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Score_View.fxml"));
+
                 Parent pane = (Parent) fxmlLoader.load();
                 stage = (Stage) ((Node) score_view.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(pane));
+                stage.setScene(scene = new Scene(pane));
+                scene.setFill(Color.TRANSPARENT);
                 stage.show();
                 Score_SceneController scoreController = fxmlLoader.getController();
                 int size = (int) ram_slider.getValue();

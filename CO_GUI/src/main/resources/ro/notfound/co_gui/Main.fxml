@@ -23,7 +23,7 @@
             <Image url="@../../../img/rocket.png" />
          </image>
       </ImageView>
-      <Text fill="#d4d9ff" layoutX="265.0" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="404" textAlignment="CENTER" wrappingWidth="269.3251953125">
+      <Text fill="#d4d9ff" layoutY="380.0" strokeType="OUTSIDE" strokeWidth="0.0" text="404" textAlignment="CENTER" wrappingWidth="800.0">
          <font>
             <Font name="System Bold" size="155.0" />
          </font>
@@ -79,14 +79,14 @@
             <Image url="@../../../img/nowifi.png" />
          </image>
       </ImageView>
-      <Pane fx:id="topPane" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
+      <Pane fx:id="topPane" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
          <children>
-            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="buttons" text="X">
+            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" scaleX="1.2" styleClass="buttons" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" styleClass="buttons" text="_">
+            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" scaleX="1.2" styleClass="buttons" text="_">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

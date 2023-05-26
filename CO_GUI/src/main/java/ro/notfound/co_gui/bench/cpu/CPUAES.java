@@ -11,6 +11,8 @@ import java.util.Base64;
 
 public class CPUAES implements IBenchmark {
     private static final String ALGORITHM = "AES";
+
+    String encrpytedText="";
     SecretKey secretKey;
     String plaintext="";
     int key;
@@ -62,7 +64,7 @@ public class CPUAES implements IBenchmark {
     }
 
     public String getResult() {
-        return "AES benchmark complete.";
+        return encrpytedText;
     }
 
     public static SecretKey generateKey(int keySize) throws NoSuchAlgorithmException {
@@ -79,6 +81,7 @@ public class CPUAES implements IBenchmark {
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         byte[] encryptedBytes = cipher.doFinal(plaintext.getBytes());
         System.out.println("Encrypted text: " + Base64.getEncoder().encodeToString(encryptedBytes));
+        encrpytedText = Base64.getEncoder().encodeToString(encryptedBytes);
         return Base64.getEncoder().encodeToString(encryptedBytes);
     }
 
@@ -90,7 +93,7 @@ public class CPUAES implements IBenchmark {
         return new String(decryptedBytes);
     }
     public double score(double time,int keySize){
-        double score=plaintext.length()*keySize/((time+1)*100.0);
+        double score = plaintext.length() / (time  *keySize + 1);
         return score;
     }
 
