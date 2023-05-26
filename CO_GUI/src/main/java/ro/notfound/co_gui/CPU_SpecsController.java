@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -56,8 +57,8 @@ public class CPU_SpecsController {
 
     @FXML
     protected void handleClickAction(MouseEvent event) {
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
+        xOffset = event.getX();
+        yOffset = event.getY();
     }
 
     @FXML
@@ -70,8 +71,10 @@ public class CPU_SpecsController {
     @FXML
     protected void History(ActionEvent history) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("History_CPU.fxml"));
+
         stage = (Stage) ((Node) history.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
@@ -79,8 +82,10 @@ public class CPU_SpecsController {
     @FXML
     protected void switchtoCPU(ActionEvent TO_CPU) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CPU_Scene.fxml"));
+
         stage = (Stage) ((Node)TO_CPU.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
@@ -89,8 +94,10 @@ public class CPU_SpecsController {
     @FXML
     protected void PC_Specs(ActionEvent TO_Specs) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Specs_CPU.fxml"));
+
         stage = (Stage) ((Node) TO_Specs.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
@@ -98,16 +105,20 @@ public class CPU_SpecsController {
     @FXML
     protected void About_CPU(ActionEvent TO_CPU) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("About_CPU.fxml"));
+
         stage = (Stage) ((Node) TO_CPU.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
     @FXML
     protected void go_Back(ActionEvent go_back) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
+
         stage = (Stage) ((Node)go_back.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }

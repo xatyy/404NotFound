@@ -12,6 +12,8 @@ public class CPURSA implements IBenchmark {
     PublicKey publicKey;
     PrivateKey privateKey;
     String plaintext="";
+
+    String enctext="";
     int keySize;
 
     public void initialize(Object... params) {
@@ -64,7 +66,7 @@ public class CPURSA implements IBenchmark {
     }
 
     public String getResult() {
-        return "RSA benchmark complete.";
+        return enctext;
     }
 
     public static KeyPair generateKeyPair(int keySize) throws NoSuchAlgorithmException {
@@ -79,6 +81,7 @@ public class CPURSA implements IBenchmark {
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
         byte[] encryptedBytes = cipher.doFinal(plaintext.getBytes());
         System.out.println("Encrypted text: " + Base64.getEncoder().encodeToString(encryptedBytes));
+        enctext = Base64.getEncoder().encodeToString(encryptedBytes);
         return Base64.getEncoder().encodeToString(encryptedBytes);
     }
 
@@ -90,7 +93,7 @@ public class CPURSA implements IBenchmark {
         return new String(decryptedBytes);
     }
     public double score(double time,int nrKeys){
-        double score=plaintext.length()*nrKeys*keySize/((time+1)*1000.0);
+        double score = plaintext.length() * nrKeys / (time * keySize + 1);
         return score;
     }
 }

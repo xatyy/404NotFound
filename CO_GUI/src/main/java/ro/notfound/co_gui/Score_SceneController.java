@@ -7,10 +7,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.result.InsertOneResult;
 import com.sun.management.OperatingSystemMXBean;
-import javafx.animation.Animation;
-import javafx.animation.Interpolator;
-import javafx.animation.ParallelTransition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -24,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -74,6 +72,12 @@ public class Score_SceneController {
     @FXML
     private Pane topPane;
 
+    @FXML
+    private Text decrypted;
+
+    @FXML
+    private Text encrypted;
+
     private boolean aes;
     private boolean rsa;
     private boolean matrixM;
@@ -93,8 +97,8 @@ public class Score_SceneController {
 
     @FXML
     protected void handleClickAction(MouseEvent event) {
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
+        xOffset = event.getX();
+        yOffset = event.getY();
     }
 
     @FXML
@@ -157,6 +161,7 @@ public class Score_SceneController {
 
     @FXML
     public double cpuAES(String message, AtomicInteger testNo) throws NoSuchAlgorithmException {
+        decrypted.setText("Your text: " + message);
         Timer time =new Timer();
         IBenchmark aesBenchmark = new CPUAES();
         TimeUnit  timeUnit=TimeUnit.Sec;
@@ -169,6 +174,7 @@ public class Score_SceneController {
         // Warm up the benchmark
         aesBenchmark.warmUp();
 
+
         // Run the benchmark
         time.start();
         aesBenchmark.run(message);
@@ -179,7 +185,7 @@ public class Score_SceneController {
         double score = (double) Math.round(((CPUAES)aesBenchmark).score(timer,keySize) * 100) / 100 ;
 
         // Print the benchmark result
-        System.out.println(aesBenchmark.getResult());
+        encrypted.setText("Encrypted text: " + aesBenchmark.getResult());
 
         double test = testNo.doubleValue();
 
@@ -193,6 +199,7 @@ public class Score_SceneController {
 
     @FXML
     public double cpuRSA(String message, AtomicInteger testNo){
+        decrypted.setText("Your text" + message);
         // Create a new benchmark instance
         IBenchmark rsaBenchmark = new CPURSA();
         ITimer time = new Timer();
@@ -216,6 +223,8 @@ public class Score_SceneController {
         double score = (double) Math.round(((CPURSA)rsaBenchmark).score(timer,nrKeys) * 100) / 100 ;
 
         double test = testNo.doubleValue();
+
+        encrypted.setText("Encrypted text: " + rsaBenchmark.getResult());
 
         score3.setY(((test - 1) * 30));
         // Print the benchmark result
@@ -383,6 +392,12 @@ public class Score_SceneController {
         }
     }
 
+    @FXML Button go_Back;
+    @FXML Button go_Leaderboard;
+
+    @FXML Button cancel;
+
+
     @FXML
     protected void runBenchmark(int [] options, String inputString, int size) {
         AtomicReference<Double> scoreMatrix = new AtomicReference<>((double) 0);
@@ -451,9 +466,22 @@ public class Score_SceneController {
 
 
             if(testLenght.get() == testDone.get()){
+                parallelTransition.stop();
+                parallelTransition2.stop();
+
                 showCount.setText("Benchmark completed!");
                 dino_gif.setImage(new Image(getClass().getResource("/img/dino_happy.png").toString(), true));
-                parallelTransition.stop();
+                cancel.setDisable(true);
+                cancel.setOpacity(0);
+                go_Back.setOpacity(1);
+                go_Leaderboard.setOpacity(1);
+                go_Back.setDisable(false);
+                go_Leaderboard.setDisable(false);
+                showCount.setText("Benchmark completed!");
+
+                jump();
+
+
                 if(testDone.get() == 3){
                     appendDatabase(scoreMatrix.get(), scoreAES.get(), scoreRSA.get(), 0);
                 }
@@ -488,7 +516,7 @@ public class Score_SceneController {
                     sb.append(String.format("%02X", mac[i]));
                 }
             }
-            if(sb == null){
+            if(mac == null){
                 return sb.toString() + userName;
             }
             return sb.toString();
@@ -515,34 +543,102 @@ public class Score_SceneController {
     private ImageView dino_gif;
 
     @FXML
+    protected void go_Test(ActionEvent go_Test) throws IOException {
+        if(ram) {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("RAM_Scene.fxml"));
+            stage = (Stage) ((Node) go_Test.getSource()).getScene().getWindow();
+            scene = new Scene(fxmlLoader.load());
+            scene.setFill(Color.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CPU_Scene.fxml"));
+            stage = (Stage) ((Node) go_Test.getSource()).getScene().getWindow();
+            scene = new Scene(fxmlLoader.load());
+            scene.setFill(Color.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    @FXML
+    protected void go_Leader(ActionEvent go_Leader) throws IOException {
+        if(ram) {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("History_RAM.fxml"));
+            stage = (Stage) ((Node) go_Leader.getSource()).getScene().getWindow();
+            scene = new Scene(fxmlLoader.load());
+            scene.setFill(Color.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("History_CPU.fxml"));
+            stage = (Stage) ((Node) go_Leader.getSource()).getScene().getWindow();
+            scene = new Scene(fxmlLoader.load());
+            scene.setFill(Color.TRANSPARENT);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    @FXML
     protected void go_Back(ActionEvent go_back) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
+
+
+        threadPool.shutdownNow();
         stage = (Stage) ((Node)go_back.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
 
 
     private int BACKGROUND_WIDTH = 993;
+
+    private int STAR_WIDTH = 853;
     private ParallelTransition parallelTransition;
 
+    private ParallelTransition parallelTransition2;
     @FXML
     ImageView background1;
 
     @FXML
     ImageView background2;
 
+    @FXML
+    ImageView star1;
+
+    @FXML
+    ImageView star2;
+
     protected void jump() {
 
-                TranslateTransition translation = new TranslateTransition(Duration.millis(100), dino_gif);
-                translation.interpolatorProperty().set(Interpolator.SPLINE(.1, .1, .7, .7));
-                translation.setByY(-50);
+                TranslateTransition translation = new TranslateTransition(Duration.millis(500), dino_gif);
+                RotateTransition rotate = new RotateTransition(Duration.millis(500), dino_gif);
+                translation.interpolatorProperty().set((new Interpolator() {
+                    @Override
+                    protected double curve(double v) {
+                        return ((v == 1.0) ? 1.0 : 1 - Math.pow(2.0, -10 * v));
+                    }
+                }));
+                rotate.interpolatorProperty().set((new Interpolator() {
+                    @Override
+                    protected double curve(double v) {
+                        return ((v == 1.0) ? 1.0 : 1 - Math.pow(2.0, -10 * v));
+                    }
+                }));
+                translation.setByY(-100);
+                rotate.setByAngle(-30);
                 translation.setAutoReverse(true);
+                rotate.setAutoReverse(true);
                 translation.setCycleCount(2);
+                rotate.setCycleCount(2);
                 translation.play();
+                rotate.play();
     }
     public synchronized void initialize() throws InterruptedException {
+
 
         /*
         Runnable task = () -> {
@@ -568,11 +664,31 @@ public class Score_SceneController {
         translateTransition2.setToX(-1 * BACKGROUND_WIDTH);
         translateTransition2.setInterpolator(Interpolator.LINEAR);
 
+        TranslateTransition translateTransition3 =
+                new TranslateTransition(Duration.millis(5000), star1);
+        translateTransition3.setFromX(0);
+        translateTransition3.setToX(-1 * STAR_WIDTH);
+        translateTransition3.setInterpolator(Interpolator.LINEAR);
+
+        TranslateTransition translateTransition4 =
+                new TranslateTransition(Duration.millis(5000), star2);
+        translateTransition4.setFromX(0);
+        translateTransition4.setToX(-1 * STAR_WIDTH);
+        translateTransition4.setInterpolator(Interpolator.LINEAR);
+
         parallelTransition =
-                new ParallelTransition( translateTransition, translateTransition2 );
+                new ParallelTransition( translateTransition, translateTransition2);
         parallelTransition.setCycleCount(Animation.INDEFINITE);
 
         parallelTransition.play();
+
+        parallelTransition2 =
+                new ParallelTransition( translateTransition3, translateTransition4 );
+        parallelTransition2.setCycleCount(Animation.INDEFINITE);
+
+        parallelTransition2.play();
+
+        /*
 
         EventHandler<KeyEvent> keyPressListener = e -> jump();
 
@@ -584,6 +700,13 @@ public class Score_SceneController {
                 newScene.addEventHandler(KeyEvent.KEY_PRESSED, keyPressListener);
             }
         });
+
+
+         */
+
+
+
+
 
 
 

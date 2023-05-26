@@ -15,6 +15,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -47,8 +48,8 @@ public class CPU_SceneController {
 
     @FXML
     protected void handleClickAction(MouseEvent event) {
-        xOffset = event.getSceneX();
-        yOffset = event.getSceneY();
+        xOffset = event.getX();
+        yOffset = event.getY();
     }
 
     @FXML
@@ -67,14 +68,17 @@ public class CPU_SceneController {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
         stage = (Stage) ((Node)go_back.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
     @FXML
     protected void History(ActionEvent history) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("History_CPU.fxml"));
+
         stage = (Stage) ((Node) history.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
@@ -82,8 +86,10 @@ public class CPU_SceneController {
     @FXML
     protected void switchtoCPU(ActionEvent TO_CPU) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CPU_Scene.fxml"));
+
         stage = (Stage) ((Node)TO_CPU.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
@@ -92,20 +98,15 @@ public class CPU_SceneController {
     @FXML
     protected void PC_Specs(ActionEvent TO_CPU) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Specs_CPU.fxml"));
+
         stage = (Stage) ((Node) TO_CPU.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
     }
-    @FXML
-    protected void About_CPU(ActionEvent TO_CPU) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("About_CPU.fxml"));
-        stage = (Stage) ((Node) TO_CPU.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
-        stage.show();
-    }
+
 
     @FXML
     TextField aes_input;
@@ -201,9 +202,11 @@ public class CPU_SceneController {
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Score_View.fxml"));
                 Parent pane = (Parent) fxmlLoader.load();
                 stage = (Stage) ((Node) score_view.getSource()).getScene().getWindow();
+
                 Score_SceneController scoreController = fxmlLoader.getController();
                // scene.setOnKeyPressed(e -> scoreController.jump());
-                stage.setScene(new Scene(pane));
+                stage.setScene(scene = new Scene(pane));
+                scene.setFill(Color.TRANSPARENT);
                 stage.show();
 
                 int matrixSize = (int) matrix_slider.getValue();
@@ -214,7 +217,7 @@ public class CPU_SceneController {
                     inputString.getStyleClass().add("error");
                     errorString.setText("String cannot be empty!");
                 }
-                if(matrix_slider.getValue() == 0){
+                if(matrix_slider.getValue() == 0 && options[2] > 0){
                     errorString1.setText("Matrix size cannot be 0!");
                 }
             }

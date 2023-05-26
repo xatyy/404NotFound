@@ -41,6 +41,9 @@
                <font>
                   <Font name="HelveticaNeue Bold" size="12.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button layoutX="12.0" layoutY="163.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="199.0" styleClass="active" text="Leaderboard">
                <font>
@@ -65,15 +68,15 @@
             </ImageView>
          </children>
       </Pane>
-      <TableView fx:id="leaderboard" layoutX="251.0" layoutY="208.0" prefHeight="200.0" prefWidth="530.0" />
-      <Pane fx:id="topPane" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
+      <TableView fx:id="leaderboard" layoutX="247.0" layoutY="208.0" prefHeight="415.0" prefWidth="530.0" />
+      <Pane fx:id="topPane" onMouseDragged="#handleMovementAction" onMouseMoved="#handleClickAction" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
          <children>
-            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="buttons" text="X">
+            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" scaleX="1.2" styleClass="buttons" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" styleClass="buttons" text="_">
+            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" prefWidth="21.0" scaleX="1.25" styleClass="buttons" text="_">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

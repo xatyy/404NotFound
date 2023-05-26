@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.RAM_SceneController">
    <children>
-      <Text fx:id="errorString" fill="#ff8f8f" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="334.49999999999994">
+      <Text fx:id="errorString" fill="#ff8f8f" layoutX="435.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="334.49999999999994" y="50.0">
          <font>
             <Font name="HelveticaNeue Bold" size="14.0" />
          </font>
@@ -106,14 +106,14 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="topPane" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
+      <Pane fx:id="topPane" onMouseDragged="#handleMovementAction" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
          <children>
-            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="buttons" text="X">
+            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" scaleX="1.2" styleClass="buttons" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" styleClass="buttons" text="_">
+            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" scaleX="1.2" styleClass="buttons" text="_">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>

@@ -11,7 +11,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ro.notfound.co_gui.Score_SceneController">
    <children>
-      <ImageView fitHeight="605.0" fitWidth="853.0" layoutX="10.0" layoutY="50.0" opacity="0.39" preserveRatio="true">
+      <ImageView fx:id="star2" fitHeight="605.0" fitWidth="853.0" layoutX="863.0" layoutY="50.0" opacity="0.39" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/stars.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="star1" fitHeight="605.0" fitWidth="853.0" layoutX="10.0" layoutY="50.0" opacity="0.39" preserveRatio="true">
          <image>
             <Image url="@../../../img/stars.png" />
          </image>
@@ -21,10 +26,13 @@
             <Font name="HelveticaNeue Bold" size="44.0" />
          </font>
       </Text>
-      <Button layoutX="300.0" layoutY="521.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="56.0" prefWidth="199.0" styleClass="buttons" text="CANCEL" textFill="#1a1b22">
+      <Button fx:id="cancel" layoutX="300.0" layoutY="521.0" mnemonicParsing="false" onAction="#go_Back" prefHeight="56.0" prefWidth="199.0" styleClass="buttons" text="CANCEL" textFill="#1a1b22">
          <font>
             <Font name="HelveticaNeue Bold" size="12.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <ImageView fx:id="dino_gif" fitHeight="64.0" fitWidth="64.0" layoutX="368.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -61,14 +69,14 @@
             <Image url="@../../../img/ground.png" />
          </image>
       </ImageView>
-      <Pane fx:id="topPane" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
+      <Pane fx:id="topPane" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
          <children>
-            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="buttons" text="X">
+            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" scaleX="1.2" styleClass="buttons" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" styleClass="buttons" text="_">
+            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" scaleX="1.2" styleClass="buttons" text="_">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -85,5 +93,31 @@
             </Text>
          </children>
       </Pane>
+      <Button fx:id="go_Back" disable="true" layoutX="184.0" layoutY="521.0" mnemonicParsing="false" onAction="#go_Test" opacity="0.0" prefHeight="56.0" prefWidth="199.0" styleClass="buttons" text="GO BACK" textFill="#1a1b22">
+         <font>
+            <Font name="HelveticaNeue Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="go_Leaderboard" disable="true" layoutX="412.0" layoutY="521.0" mnemonicParsing="false" onAction="#go_Leader" opacity="0.0" prefHeight="56.0" prefWidth="199.0" styleClass="buttons" text="VIEW LEADERBOARD" textFill="#1a1b22">
+         <font>
+            <Font name="HelveticaNeue Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Text fx:id="decrypted" fill="#cacef2" layoutY="292.0" opacity="0.6" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="800.0">
+         <font>
+            <Font name="HelveticaNeue Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="encrypted" fill="#cacef2" layoutY="352.0" opacity="0.6" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="800.0">
+         <font>
+            <Font name="HelveticaNeue Bold" size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

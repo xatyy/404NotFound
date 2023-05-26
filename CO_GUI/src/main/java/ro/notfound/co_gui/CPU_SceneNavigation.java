@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,7 +18,9 @@ public class CPU_SceneNavigation {
     protected void History(ActionEvent history) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("History_CPU.fxml"));
         stage = (Stage) ((Node) history.getSource()).getScene().getWindow();
+
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
@@ -26,7 +29,9 @@ public class CPU_SceneNavigation {
     protected void switchtoCPU(ActionEvent TO_CPU) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("CPU_Scene.fxml"));
         stage = (Stage) ((Node)TO_CPU.getSource()).getScene().getWindow();
+
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
@@ -36,7 +41,9 @@ public class CPU_SceneNavigation {
     protected void PC_Specs(ActionEvent TO_Specs) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Specs_CPU.fxml"));
         stage = (Stage) ((Node) TO_Specs.getSource()).getScene().getWindow();
+
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
 
@@ -45,7 +52,9 @@ public class CPU_SceneNavigation {
     protected void About_CPU(ActionEvent TO_CPU) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("About_CPU.fxml"));
         stage = (Stage) ((Node) TO_CPU.getSource()).getScene().getWindow();
+
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }
@@ -53,7 +62,9 @@ public class CPU_SceneNavigation {
     protected void go_Back(ActionEvent go_back) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Main.fxml"));
         stage = (Stage) ((Node)go_back.getSource()).getScene().getWindow();
+
         scene = new Scene(fxmlLoader.load());
+        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.show();
     }

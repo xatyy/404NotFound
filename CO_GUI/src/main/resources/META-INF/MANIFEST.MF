@@ -1,3 +1,9 @@
 Manifest-Version: 1.0
 Main-Class: ro.notfound.co_gui.HelloApplication
+Class-Path: bootstrapfx-core-0.4.0.jar slf4j-simple-1.6.4.jar javafx-gra
+ phics-17.0.2.jar javafx-fxml-17.0.2.jar javafx-base-17.0.2.jar slf4j-ap
+ i-1.7.5.jar bson-record-codec-4.9.1.jar javafx-controls-17.0.2.jar java
+ fx-graphics-17.0.2-win.jar javafx-fxml-17.0.2-win.jar mongodb-driver-sy
+ nc-4.9.1.jar mongodb-driver-core-4.9.1.jar javafx-base-17.0.2-win.jar b
+ son-4.9.1.jar javafx-controls-17.0.2-win.jar
 

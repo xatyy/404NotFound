@@ -121,7 +121,7 @@
             <Font name="HelveticaNeue Bold" size="16.0" />
          </font>
       </Text>
-      <TextArea fx:id="inputString" layoutX="418.0" layoutY="240.0" prefHeight="118.0" prefWidth="336.0" promptText="Start writing here..." wrapText="true" />
+      <TextArea fx:id="inputString" layoutX="418.0" layoutY="240.0" prefHeight="118.0" prefWidth="336.0" promptText="Start writing the text you would like to encrypt.." wrapText="true" />
       <ImageView disable="true" fitHeight="13.0" fitWidth="16.0" layoutX="370.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/check.png" />
@@ -147,14 +147,14 @@
             <Font name="HelveticaNeue Bold" size="14.0" />
          </font>
       </Text>
-      <Pane fx:id="topPane" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
+      <Pane fx:id="topPane" onMouseDragged="#handleMovementAction" onMousePressed="#handleClickAction" prefHeight="36.0" prefWidth="800.0" styleClass="top-bar">
          <children>
-            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" styleClass="buttons" text="X">
+            <Button fx:id="btnClose" layoutX="762.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleCloseAction" scaleX="1.2" styleClass="buttons" text="X">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" styleClass="buttons" text="_">
+            <Button fx:id="btnMin" layoutX="730.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleMinifyAction" scaleX="1.2" styleClass="buttons" text="_">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
