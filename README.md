@@ -6,7 +6,7 @@ Download our benchmark from the Releases tab!
 
 
 
-A benchmark application implemented in Java,JavaFX providing a graphical representation of the
+A benchmark application implemented in Java, JavaFX providing a graphical representation of the
 benchmarking process.
 This benchmark evaluates CPU performance in
 encryption/decryption (AES and RSA), multithreading for matrix
